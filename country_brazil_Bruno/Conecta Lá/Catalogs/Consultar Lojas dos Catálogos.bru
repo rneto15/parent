@@ -1,0 +1,45 @@
+meta {
+  name: Consultar Lojas dos Catálogos
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/GetCatalogs/stores
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: email@email.com
+  x-api-key: CHAVE
+  x-provider-key: 00
+}
+
+docs {
+  Consulta de todas as lojas do catálogo de um fornecedor.
+  
+  No cabeçalho são fornecidas as informações do fornecedor.
+  
+  Em caso de sucesso, um resultado com três chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "code", tem os seguintes valores possíveis:
+  
+  <table>
+  <tr><td>Valor</td><td>Descrição</td></tr>
+  <tr><td>01</td><td>Catálogo(s) encontrado(s).</td></tr>
+  <tr><td>21</td><td>Nenhum catálogo encontrado.</td></tr>
+  <tr><td>24</td><td>Problema interno na formatação dos dados para exibição.</td></tr>
+  </table>
+  
+  A terceira chave, intitulada "result", fornece informações sobre as lojas presentes em um ou mais catálogos, com as seguintes chaves:
+  
+  <table>
+  <tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  <tr><td>catalog_id</td><td>Id do catálogo.</td><td>Integer</td></tr>
+  <tr><td>catalog_name</td><td>Nome do catálogo.</td><td>String</td></tr>
+  <tr><td>catalog_code</td><td>Código do catálogo.</td><td>Integer</td></tr>
+  <tr><td>store_id</td><td>Id da loja.</td><td>Integer</td></tr>
+  <tr><td>store_name</td><td>Nome da loja.</td><td>String</td></tr>
+  </table>
+}

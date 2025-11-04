@@ -1,0 +1,40 @@
+meta {
+  name: report request
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/gdc/app/projects/zonr0b69ssdpkkjavpbow3f9bn3krgcl/execute/raw
+  body: json
+  auth: none
+}
+
+headers {
+  User-Agent: Decathlon
+}
+
+body:json {
+  {
+      "report_req": {
+          "report": "/gdc/md/zonr0b69ssdpkkjavpbow3f9bn3krgcl/obj/2097508",
+          "context": {
+              "filters": [
+                  {
+                      "uri": "/gdc/md/zonr0b69ssdpkkjavpbow3f9bn3krgcl/obj/112894",
+                      "constraint": {
+                          "type": "floating",
+                          "from": -205,
+                          "to":-205
+                      }
+                  }
+              ]
+          }
+      }
+  }
+}
+
+script:post-response {
+  var jsonData = JSON.parse(responseBody);
+  bru.setEnvVar("report_url", jsonData.uri);
+}

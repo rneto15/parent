@@ -1,0 +1,14 @@
+meta {
+  name: Attachments
+  seq: 8
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}

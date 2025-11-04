@@ -1,0 +1,14 @@
+meta {
+  name: Search
+  seq: 7
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}

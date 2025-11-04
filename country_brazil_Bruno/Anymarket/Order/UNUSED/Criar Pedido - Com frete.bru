@@ -1,0 +1,88 @@
+meta {
+  name: Criar Pedido - Com frete
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/orders
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "id": null,
+    "createdAt": "2017-01-16T14:48:03Z",
+    "status": "PENDING",
+    "marketPlaceStatus": "PENDING",
+    "marketPlace": "ECOMMERCE",
+    "marketPlaceId": "6325436711",
+    "marketPlaceShipmentStatus": "PENDING",
+    "transmissionStatus": "OK",
+    "discount": 0,
+    "freight": 30,
+    "gross": 100,
+    "total": 130,
+    "shipping": {
+      "city": "Maringa",
+      "state": "PR",
+      "country": "BR",
+      "address": "Avenida Horacio Raccanello Filho 5410 - Centro",
+      "zipCode": "87020035"
+    },
+    "buyer": {
+      "id": "123498",
+      "name": "USER TESTE",
+      "email": "USER@tes.com.br",
+      "document": "31882553144",
+      "documentType": "CPF",
+      "phone": "4498765432"
+    },
+    "payments": [
+      {
+        "method": "Dinheiro",
+        "status": "Pago",
+        "value": 0
+      }
+    ],
+    "items": [
+      {
+        "sku": {
+          "partnerId": ""
+        },
+        "amount": 1,
+        "unit": 100,
+        "price": 100,
+        "discount": 0,
+        "gross": 0,
+        "total": 130,
+        "shippings":[ 
+          {
+            "id": 1,
+            "shippingtype": "Correios PAC",
+            "shippingCarrierNormalized": "CORREIOS",
+            "shippingCarrierTypeNormalized": "PAC"
+          }
+        ] 
+      }
+    ]
+  }
+}
+
+script:post-response {
+  test("Status code is 200", function() {
+    expect(Boolean(responseCode.code === 201)).to.be.true;
+  });
+  
+  // pm.setGlobalVariable("market_id", "{{$randomInt}}"+"{{$randomInt}}");
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Consultar Fabricantes (Marcas)
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/Brands
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+docs {
+  Consulta de fabricantes disponíveis para uso.
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com um vetor intitulado "brands". O vetor "brands" tem como chave o código de cada produto cadastrado e, como valor, o nome de cada produto cadastrado.
+}

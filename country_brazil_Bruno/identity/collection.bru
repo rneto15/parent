@@ -1,0 +1,27 @@
+meta {
+  name: identity
+  seq: 1
+}
+
+auth {
+  mode: oauth2
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: {{endpoint_fedid}}
+  refresh_token_url: 
+  client_id: {{client_id_fedid}}
+  client_secret: {{client_secret_fedid}}
+  scope: 
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}
+
+docs {
+  [https://portal-gravitee-pp.decathlon.net/catalog/api/539c85ff-9c60-4800-9c85-ff9c6068005c/doc?page=ed38df3e-7e75-47f0-b8df-3e7e7597f0b7](https://portal-gravitee-pp.decathlon.net/catalog/api/539c85ff-9c60-4800-9c85-ff9c6068005c/doc?page=ed38df3e-7e75-47f0-b8df-3e7e7597f0b7)
+}

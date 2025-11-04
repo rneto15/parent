@@ -1,0 +1,38 @@
+meta {
+  name: expirações
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{endpoint}}/wallet-gateway-data/v1/wallet/{{wallet_id}}/credits/expired?pagination.pageSize=1&pagination.pageNumber=1&filter.initialDate=2024-09-01T00:00:00-03:00&filter.finalDate=2024-10-08T00:00:00-03:00
+  body: none
+  auth: oauth2
+}
+
+params:query {
+  pagination.pageSize: 1
+  pagination.pageNumber: 1
+  filter.initialDate: 2024-09-01T00:00:00-03:00
+  filter.finalDate: 2024-10-08T00:00:00-03:00
+}
+
+headers {
+  Ocp-Apim-Subscription-Key: c0df44b049f64330b33c1c28498ecd12
+  ~Authorization: Bearer <token>
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: {{endpoint_oauth}}
+  refresh_token_url: 
+  client_id: {{client_id}}
+  client_secret: {{client_secret}}
+  scope: {{scope}}
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}

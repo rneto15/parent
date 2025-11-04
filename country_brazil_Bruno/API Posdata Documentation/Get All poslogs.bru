@@ -1,0 +1,16 @@
+meta {
+  name: Get All poslogs
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api-eu.preprod.subsidia.org/posdata_api/poslogs
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer your-fed-token
+  x-api-key: your-x-api-key
+}

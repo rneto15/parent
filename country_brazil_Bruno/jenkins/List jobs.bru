@@ -1,0 +1,23 @@
+meta {
+  name: List jobs
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseurl}}/api/json?pretty=true&depth=3&tree=jobs[name,jobs[name]]
+  body: none
+  auth: basic
+}
+
+params:query {
+  pretty: true
+  depth: 3
+  tree: jobs[name,jobs[name]]
+  ~tree: jobs[name]
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{token}}
+}

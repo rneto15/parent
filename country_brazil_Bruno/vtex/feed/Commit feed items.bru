@@ -1,0 +1,31 @@
+meta {
+  name: Commit feed items
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/orders/feed
+  body: json
+  auth: none
+}
+
+params:path {
+  accountName: {{accountName}}
+  environment: {{environment}}
+}
+
+headers {
+  X-VTEX-API-AppKey:  {{appKey}}
+  X-VTEX-API-AppToken:  {{appToken}}
+  ~Content-Type: application/json
+  ~Accept: text/plain
+}
+
+body:json {
+  {"handles": ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidnRleGFwcGtleS1kZWNhdGhsb25wcm9xYS1SUVhTVEkiLCJBcHBLZXkiOiJ2dGV4YXBwa2V5LWRlY2F0aGxvbnByb3FhLVJRWFNUSSIsIkFjY291bnQiOiJkZWNhdGhsb25zdG9yZXNxYSIsIkhhbmRsZSI6IkFRRUIxUmFQbGhWajV6aG5kbnd4RjdUcVJYcW5TUVd5clV2emNacXlIT2hpdXhtcFpBQ29uVER0RnAvR0wyT2NyS3UvY09jOWU4R3pPZ0dqbzZ3U20wcndnSXRleWFWUkwzY01RdFVkdFZXVnRUV053czJSbG5IUEc1ZEoxR25WQ2diVDdSbzVsa1FLV09yTnM0NDZDWFdYQXMwZ2QydUFsR1FzQXQ0ZFF3alc1eGNwa0YyL2kycTZWR0U3NmtSbDZWUkV1dG1XZjdLWCtBUnFVRmJ3T3BNY0VXZlkyOUNnWXV1WThBa2Y0MGc1V3ZLc0g4ZjRuY2RWanFhTUVDaStUM3VMVGtBaHhpbjFIOUp4bHdZMTZNeHhHc2diUlc5ZDIwNzZuK1lpSmNBSGlnRUlrdElnbXlOZ3VybFArblUwQXJ3b29MZFpTVmJ6Qk8rN0ZOVDhUVzltS3VWbkNWay9IV0NZeG8yVWFZYmZtKzk1UGRsRitoUkI4VFZpREpWRWRETngxa09NOHdvOFZBM0lqSjFZa0huMzN0cEJBVm8zUURNRGk4bGpUanZ3cXRhOTVqYW8wZm5MTGZGU1FrMXd0VTFWMHhoTFpwSE13S0MrQ1NPeE16WGpndz09IiwiT3JkZXJJZCI6IjEzMTA1MDA1MjUxMjQtMDEiLCJNZXNzYWdlSWQiOiIwYjQ2Y2I2MS0yYTE4LTQzMjYtYjI0ZS0wN2IyZWZhMDZkNTkiLCJEb21haW4iOiJNYXJrZXRwbGFjZSIsIlN0YXRlIjoib24tb3JkZXItY29tcGxldGVkIiwiTGFzdFN0YXRlIjoib3JkZXItY3JlYXRlZCIsIkxhc3RDaGFuZ2UiOiIwMi8xMy8yMDIzIDE4OjI1OjQzIiwiQ3VycmVudENoYW5nZSI6IjAyLzEzLzIwMjMgMTg6MjU6NDMiLCJDcmVhdGVkQXQiOiIwMi8xMy8yMDIzIDE4OjU5OjQxIiwiQXZhaWxhYmxlRGF0ZSI6IjAyLzEzLzIwMjMgMTg6MjU6NDgiLCJpc3MiOiJicm9hZGNhc3QtYXBpLnZ0ZXhjb21tZXJjZS5jb20uYnIiLCJhdWQiOiJkZWNhdGhsb25zdG9yZXNxYV92dGV4YXBwa2V5LWRlY2F0aGxvbnByb3FhLVJRWFNUSSJ9.2G6W8WaEtDi3IeEWsf1Ek_xKeSDOFb_JjulhIGZ110U"]}
+}
+
+docs {
+  Commit items in the [feed](https://developers.vtex.com/docs/guides/orders-feed) queue.
+}

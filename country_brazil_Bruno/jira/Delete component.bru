@@ -1,0 +1,16 @@
+meta {
+  name: Delete component
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{baseurl}}/rest/api/3/component/{{id}}
+  body: none
+  auth: basic
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{pass}}
+}

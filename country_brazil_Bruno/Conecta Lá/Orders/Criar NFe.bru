@@ -1,0 +1,61 @@
+meta {
+  name: Criar NFe
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Orders/nfe
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "nfe": [
+          {
+              "order_number": 8,
+              "invoce_number": 211071,
+              "price": 119.90,
+              "serie": 1,
+              "access_key": "41191075086785000166550010002110711997889290",
+              "emission_datetime": "15/10/2019 17:24:59",
+              "collection_date": "23/04/2020"
+          },
+          {
+              "order_number": 10,
+              "invoce_number": 1627,
+              "price": 149.99,
+              "serie": 1,
+              "access_key": "43200120699372000165550010000016271065533664",
+              "emission_datetime": "13/01/2020 15:51:05",
+              "collection_date": "23/04/2020"
+          }
+      ]
+  }
+}
+
+docs {
+  Caso queira realizar alguma alteração, basta informar o número do pedido (<code>order_number</code>) junto com o(s) campo(s) em que se deseja realizar a atualização. Os campos que podem ser atualizados são os seguintes:
+  
+  <table>
+  <tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  <tr><td>order_number</td><td>Código do pedido no sistema.</td><td>Integer</td></tr>
+  <tr><td>invoce_number</td><td>Número da nota fiscal.</td><td>Integer</td></tr>
+  <tr><td>price</td><td>Valor da nota fiscal.</td><td>Float</td></tr>
+  <tr><td>serie</td><td>Número de série.</td><td>Integer</td></tr>
+  <tr><td>access_key</td><td>Chave de acesso.</td><td>String</td></tr>
+  <tr><td>emission_datetime</td><td>Data de emissão.</td><td>String</td></tr>
+  <tr><td>collection_date</td><td>(Opcional) Data de coleta.</td><td>String</td></tr>
+  </table>
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Invoice successfully inserted" como valor.
+}

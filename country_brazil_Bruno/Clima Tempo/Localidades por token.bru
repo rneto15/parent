@@ -1,0 +1,15 @@
+meta {
+  name: Localidades por token
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://apiadvisor.climatempo.com.br/api-manager/user-token/{{token_previsao}}/locales
+  body: none
+  auth: none
+}
+
+docs {
+  Generated from cURL: curl -i 'http://apiadvisor.climatempo.com.br/api-manager/user-token/:your-app-token/locales'
+}

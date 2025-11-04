@@ -1,0 +1,17 @@
+meta {
+  name: User
+  seq: 1
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: X-API-Key
+  value: {{token}}
+  placement: header
+}
+docs {
+  The `/me` endpoints let you manage information about the authenticated user.
+}

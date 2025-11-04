@@ -1,0 +1,397 @@
+meta {
+  name: update config
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseurl}}/job/{{job}}/config.xml
+  body: xml
+  auth: basic
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{token}}
+}
+
+body:xml {
+  <?xml version="1.1" encoding="UTF-8" standalone="no"?><flow-definition plugin="workflow-job@1385.vb_58b_86ea_fff1">
+    <actions>
+      <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@2.2175.v76a_fff0a_2618"/>
+      <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@2.2175.v76a_fff0a_2618">
+        <jobProperties/>
+        <triggers/>
+        <parameters/>
+        <options/>
+      </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+    </actions>
+    <description>Pipeline faz:
+  - Limpeza de fila de reprocessamento: deleta arquivos de recovery pendentes.
+  - stagio 1: extração kpi mensal tabelas sap
+  - stagio 2: import de kpi mensal sap no redshift
+  - stagio 3: extração kpi mensal tabelas redshift
+  - stagio 4: detalhamento kpi diarios a calcular
+  - atualizar arquivos de exec 1 - Criação arquivos de execução a partir dos novos calculos de kpi
+  - stagio 5: extração kpi diario tabelas sap
+  - stagio 6: import kpi diario no redshift
+  - stagio 7: extração kpi diario tabelas redshift
+  - stagio 8: calcula e agenda periodos que estÃ£o diferentes para reprocessamento
+  - atualizar arquivos de exec 2 - Criação arquivos execução a partir dos novos dados para reprocessamento.
+  - stagio 9: extração reprocessamento tabelas sap
+  - stagio 10: import do reprocessamento tabelas sap</description>
+    <keepDependencies>false</keepDependencies>
+    <properties>
+      <jenkins.model.BuildDiscarderProperty>
+        <strategy class="hudson.tasks.LogRotator">
+          <daysToKeep>7</daysToKeep>
+          <numToKeep>50</numToKeep>
+          <artifactDaysToKeep>-1</artifactDaysToKeep>
+          <artifactNumToKeep>-1</artifactNumToKeep>
+        </strategy>
+      </jenkins.model.BuildDiscarderProperty>
+      <org.jenkinsci.plugins.workflow.job.properties.DisableConcurrentBuildsJobProperty>
+        <abortPrevious>false</abortPrevious>
+      </org.jenkinsci.plugins.workflow.job.properties.DisableConcurrentBuildsJobProperty>
+      <hudson.model.ParametersDefinitionProperty>
+        <parameterDefinitions>
+          <hudson.model.StringParameterDefinition>
+            <name>LOG_FILE</name>
+            <defaultValue>/data/log_files/$JOB_NAME/log_file.log</defaultValue>
+            <trim>false</trim>
+          </hudson.model.StringParameterDefinition>
+          <hudson.model.StringParameterDefinition>
+            <name>Local_files</name>
+            <defaultValue>/data/files/prod/integridade_sap</defaultValue>
+            <trim>false</trim>
+          </hudson.model.StringParameterDefinition>
+        </parameterDefinitions>
+      </hudson.model.ParametersDefinitionProperty>
+      
+      <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+        <triggers>
+          <hudson.triggers.TimerTrigger>
+            <spec>H(0-5) 2 * * 1-6
+  H(0-5) 4 * * 0 </spec>
+          </hudson.triggers.TimerTrigger>
+        </triggers>
+      </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+    </properties>
+    <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@3853.vb_a_490d892963">
+      <script>pipeline {
+  	agent any
+  	options{
+  	    //retry(2)
+  	    timeout(time: 6, unit: 'HOURS') 
+  	}
+  	stages {
+  	    stage('Limpeza de fila de reprocessamento e kpi diarios'){
+  		    steps{
+  		        echo 'limpeza de fila de recovery'
+  		        //sh '/data/ressources/delete_existing_recovery_exec_files_for_instances_in_pipeline_file.sh /data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_9.csv'
+  		        //sh '/data/ressources/delete_existing_recovery_exec_files_for_instances_in_pipeline_file.sh /data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_5.csv'
+  		        //sh '/data/ressources/delete_existing_recovery_exec_files_for_instances_in_pipeline_file.sh /data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_7.csv'
+  		    }
+  		}
+  		stage('init kpi mensal') {
+  			parallel {
+  				stage('kpi mensal sap') {
+  					stages {
+  						stage('extrair da sap') {
+  							steps {
+  								echo 'stage 1'
+  								build job: 'GENERIC_SAP_TO_S3_BDD_L_02092022_SAP_TO_S3_VIA_QUERY_JPE', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_1.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  							}
+  							post {
+  								//success {
+  								//}
+  								failure {
+  									script {
+  										error "Failed, exiting now..."
+  									}
+  								}
+  								//aborted {
+  								//}
+  								unstable {
+  									script {
+  										error "Unstable, exiting now..."
+  									}
+  								}
+  							}
+  						}
+  						stage('importar no redshift') {
+  							steps {
+  								echo 'stage 2'
+  								build job: 'GENERIC_S3_TO_RED_CSV_L_25082022_S3_TO_REDSHIFT_JDF (MODO INCREMENT)', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_2.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  							}
+  							post {
+  								//success {
+  								//}
+  								failure {
+  									script {
+  										error "Failed, exiting now..."
+  									}
+  								}
+  								//aborted {
+  								//}
+  								unstable {
+  									script {
+  										error "Unstable, exiting now..."
+  									}
+  								}
+  							}
+  						}
+  					}
+  				}
+  				stage('kpi mensal redshift') {
+  					steps {
+  						echo 'stage 3'
+  						build job: 'GENERIC_RED_TO_RED_BDD_1_08092022_EXECUTE_PROCEDURE_JDF', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_3.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  					}
+  					post {
+  						//success {
+  						//}
+  						failure {
+  							script {
+  								error "Failed, exiting now..."
+  							}
+  						}
+  						//aborted {
+  						//}
+  						unstable {
+  							script {
+  								error "Unstable, exiting now..."
+  							}
+  						}
+  					}
+  				}
+  			}
+  		}
+  		stage('procedure de detalhamento') {
+  			steps {
+  				echo 'stage 4'
+  				build job: 'GENERIC_RED_TO_RED_BDD_1_08092022_EXECUTE_PROCEDURE_JDF', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_4.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  			}
+  			post {
+  				//success {
+  				//}
+  				failure {
+  					script {
+  						error "Failed, exiting now..."
+  					}
+  				}
+  				//aborted {
+  				//}
+  				unstable {
+  					script {
+  						error "Unstable, exiting now..."
+  					}
+  				}
+  			}
+  		}
+  		stage('atualizar arquivos de exec 1') {
+  			steps {
+  				echo 'refresh master 1'
+  				build job: 'MASTER_RED_TO_LIN_BDD_L_19082022_DEPLOY_DE_ARQUIVOS_DE_EXECUCAO_JDF'
+  			}
+  			post {
+  				//success {
+  				//}
+  				failure {
+  					script {
+  						error "Failed, exiting now..."
+  					}
+  				}
+  				//aborted {
+  				//}
+  				unstable {
+  					script {
+  						error "Unstable, exiting now..."
+  					}
+  				}
+  			}
+  		}
+  		stage('init kpi diario') {
+  			parallel {
+  				stage('kpi diario sap') {
+  					stages {
+  						stage('extrair da sap') {
+  							steps {
+  								echo 'stage 5'
+  								build job: 'GENERIC_SAP_TO_S3_BDD_L_02092022_SAP_TO_S3_VIA_QUERY_JPE', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_5.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  							}
+  							post {
+  								//success {
+  								//}
+  								failure {
+  									script {
+  										error "Failed, exiting now..."
+  									}
+  								}
+  								//aborted {
+  								//}
+  								unstable {
+  									script {
+  										error "Unstable, exiting now..."
+  									}
+  								}
+  							}
+  						}
+  						stage('importar no redshift') {
+  							steps {
+  								echo 'stage 6'
+  								build job: 'GENERIC_S3_TO_RED_CSV_L_25082022_S3_TO_REDSHIFT_JDF (MODO RECOVERY)', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_6.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  							}
+  							post {
+  								//success {
+  								//}
+  								failure {
+  									script {
+  										error "Failed, exiting now..."
+  									}
+  								}
+  								//aborted {
+  								//}
+  								unstable {
+  									script {
+  										error "Unstable, exiting now..."
+  									}
+  								}
+  							}
+  						}
+  					}
+  				}
+  				stage('kpi diario redshift') {
+  					steps {
+  						echo 'stage 7'
+  						build job: 'GENERIC_RED_TO_RED_BDD_1_08092022_EXECUTE_PROCEDURE_JDF', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_7.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  					}
+  					post {
+  						//success {
+  						//}
+  						failure {
+  							script {
+  								error "Failed, exiting now..."
+  							}
+  						}
+  						//aborted {
+  						//}
+  						unstable {
+  							script {
+  								error "Unstable, exiting now..."
+  							}
+  						}
+  					}
+  				}
+  			}
+  		}
+  		stage('procedure de reprocessamento') {
+  			steps {
+  				echo 'stage 8'
+  				build job: 'GENERIC_RED_TO_RED_BDD_1_08092022_EXECUTE_PROCEDURE_JDF', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_8.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  			}
+  			post {
+  				//success {
+  				//}
+  				failure {
+  					script {
+  						error "Failed, exiting now..."
+  					}
+  				}
+  				//aborted {
+  				//}
+  				unstable {
+  					script {
+  						error "Unstable, exiting now..."
+  					}
+  				}
+  			}
+  		}
+  		stage('atualizar arquivos de exec 2') {
+  			steps {
+  				echo 'refresh master 2'
+  				build job: 'MASTER_RED_TO_LIN_BDD_L_19082022_DEPLOY_DE_ARQUIVOS_DE_EXECUCAO_JDF'
+  			}
+  			post {
+  				//success {
+  				//}
+  				failure {
+  					script {
+  						error "Failed, exiting now..."
+  					}
+  				}
+  				//aborted {
+  				//}
+  				unstable {
+  					script {
+  						error "Unstable, exiting now..."
+  					}
+  				}
+  			}
+  		}
+  		stage('reprocessamento sap') {
+  			steps {
+  				catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') {
+  					echo 'stage 9'
+  					build job: 'GENERIC_SAP_TO_S3_BDD_L_02092022_SAP_TO_S3_VIA_QUERY_JPE', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_9.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  				}
+  			}
+  			post {
+  				//success {
+  				//}
+  				failure {
+  					script {
+  						error "Failed, exiting now..."
+  					}
+  				}
+  				//aborted {
+  				//}
+  				unstable {
+  					script {
+  						error "Unstable, exiting now..."
+  					}
+  				}
+  			}
+  		}
+  		stage('integração redshift') {
+  			steps {
+  				echo 'stage 10'
+  				build job: 'GENERIC_S3_TO_RED_CSV_L_25082022_S3_TO_REDSHIFT_JDF (MODO RECOVERY)', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_10.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  			}
+  		}
+  		stage('kpi mensal redshift') {
+  			steps {
+  				echo 'stage 3'
+  				build job: 'GENERIC_RED_TO_RED_BDD_1_08092022_EXECUTE_PROCEDURE_JDF', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_3.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  			}
+  			post {
+  				//success {
+  				//}
+  				failure {
+  					script {
+  						error "Failed, exiting now..."
+  					}
+  				}
+  				//aborted {
+  				//}
+  				unstable {
+  					script {
+  						error "Unstable, exiting now..."
+  					}
+  				}
+  			}
+  		}
+  		stage('refresh a_daily_kpi') {
+  			steps {
+  				echo 'stage 11'
+  				build job: 'GENERIC_RED_TO_RED_BDD_1_08092022_EXECUTE_PROCEDURE_JDF', parameters: [string(name: 'PIPELINE_FILE', value: '/data/pipeline_files/PIPELINE_INTEGRIDADE_SAP_11.csv'), string(name: 'LOG_FILE', value: params.LOG_FILE), string(name: 'Local_files', value: params.Local_files)]
+  			}
+  		}
+  	}
+  }</script>
+      <sandbox>true</sandbox>
+    </definition>
+    <triggers/>
+    <disabled>false</disabled>
+  </flow-definition>
+}

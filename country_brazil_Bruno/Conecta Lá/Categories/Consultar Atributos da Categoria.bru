@@ -1,0 +1,38 @@
+meta {
+  name: Consultar Atributos da Categoria
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/Categories/attributes/{{Code}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+docs {
+  Consulta dos atributos de uma categoria disponível para uso.
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com os atributos de uma categoria cadastrada.
+  
+  Os campos retornados de cada categoria são os seguintes:
+  
+  <table>
+  <tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  <tr><td>category_id</td><td>Id da categoria.</td><td>Integer</td></tr>
+  <tr><td>attribute_id</td><td>Atributo referente a que tipo.</td><td>String</td></tr>
+  <tr><td>name</td><td>Nome to atributo.</td><td>Boolean</td></tr>
+  <tr><td>required</td><td>Informação sobre a obrigatoriedade do campo.</td><td>Boolean</td></tr>
+  <tr><td>variation</td><td>Informação sobre a existência de alguma variação da categoria.</td><td>Boolean</td></tr>
+  <tr><td>type</td><td>Tipo de variação.</td><td>String</td></tr>
+  <tr><td>values</td><td>Valor do tipo de variação.</td><td>String</td></tr>
+  </table>
+}

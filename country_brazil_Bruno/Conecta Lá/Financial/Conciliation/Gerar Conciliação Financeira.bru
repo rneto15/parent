@@ -1,0 +1,42 @@
+meta {
+  name: Gerar Conciliação Financeira
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Financial/conciliation
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-provider-key}}
+  x-store-seller-key: {{x-store-seller-key}}
+}
+
+body:json {
+  {
+  	"marketplaceName" : "Marketplace Casa & Video",
+  	"month" : "11",
+  	"year" : "2021",
+  	"day" : "15"
+  }
+}
+
+docs {
+  Para gerar a conciliação financeira no dia de conciliamento, todos os atributos solicitados devem ser fornecidos:
+  <table>
+  <tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  <tr><td>marketplaceName</td><td>Nome do Marketplace (O mesmo que aparece para você no combo de seleção de marketplace, na tela de conciliação financeira).</td><td>string</td></tr>
+  <tr><td>month</td><td>Mês da Conciliação (No formato de 2 dígitos).</td><td>string</td></tr>
+  <tr><td>year</td><td>Ano da Conciliação (No formato de 4 dígitos).</td><td>string</td></tr>
+  <tr><td>day</td><td>Dia da Conciliação (No formato de 2 dígitos).</td><td>string</td></tr>
+  </table>
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com os atributos de uma categoria cadastrada.
+}

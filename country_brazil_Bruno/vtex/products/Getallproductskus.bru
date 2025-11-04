@@ -1,0 +1,16 @@
+meta {
+  name: Getallproductskus
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/catalog_system/pvt/sku/stockkeepingunitByProductId/10994
+  body: none
+  auth: none
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

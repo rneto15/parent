@@ -1,0 +1,21 @@
+meta {
+  name: customers/20143shippingAddress
+  type: http
+  seq: 8
+}
+
+get {
+  url: https://magento.staging.runningland.com.br/rest/default/V1/customers/20143/shippingAddress
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: b3yk94zuoyq0cyx2eoix4nq0ee6yj376
+}
+
+script:post-response {
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+}

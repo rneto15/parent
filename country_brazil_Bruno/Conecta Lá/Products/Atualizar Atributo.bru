@@ -1,0 +1,34 @@
+meta {
+  name: Atualizar Atributo
+  type: http
+  seq: 9
+}
+
+put {
+  url: http://teste.conectala.com.br/app/Api/V1/Products/Attributes/{{SKU}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "attribute": [
+          {
+              "code": "VIA-17134",
+              "value": ""
+          }
+      ]
+  }
+}
+
+docs {
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Produto atualizado com sucesso." como valor.
+}

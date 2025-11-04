@@ -1,0 +1,28 @@
+meta {
+  name: PUT
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/brands/{{ID_BRAND}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "name": "Brand Example2",
+    "partnerId":"bexample2"
+  }
+  
+}

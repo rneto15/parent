@@ -1,0 +1,58 @@
+meta {
+  name: Criar Fabricante (Marca)
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Brands
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "brand": {
+          "name": "Fabricante"
+      }
+  }
+}
+
+docs {
+  Cadastro de novo fabricante.
+  
+  O seguinte atributo deve ser informado no corpo da requisição:
+  
+  <table>
+  <tr><td>Atributo</td><td>Descrição</td><td>Tipo </td></tr>
+  <tr><td>name</td><td>Nome do fabricante.</td><td>String</td></tr>
+  </table>
+  
+  A criação de fabricante está liberada para lojas que não têm catálogo. Se a loja já tem catálogo, a tentativa de criação mostra o seguinte retorno:
+  
+  <pre><code>
+  {
+      "success": false,
+      "message": "Feature unavailable."
+  }
+  </code></pre>
+  
+  Caso o corpo da requisição siga um formato diferente do esperado, de modo que o sistema não consiga discernir qual é o fabricante a ser criado, o seguinte erro é retornado:
+  
+  <pre><code>
+  {
+      "success": false,
+      "message": "Not found brand key."
+  }
+  </code></pre>
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "message" é retornada com o valor "Brand successfully inserted".
+}

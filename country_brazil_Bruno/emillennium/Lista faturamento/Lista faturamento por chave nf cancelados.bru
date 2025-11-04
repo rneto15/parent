@@ -1,0 +1,24 @@
+meta {
+  name: Lista faturamento por chave nf cancelados
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{endpoint}}/api/millenium_eco_Cdecathlon/pedido_venda/listafaturamentos?%24dateformat=ISO&%24format=json&chave_nf=35230202314041002121550040019845281023102572
+  body: none
+  auth: basic
+}
+
+params:query {
+  %24dateformat: ISO
+  %24format: json
+  chave_nf: 35230202314041002121550040019845281023102572
+  ~gera_xml: T
+  ~cancelada: true
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

@@ -1,0 +1,20 @@
+meta {
+  name: GET DE TRANSMISSÃO POR SKU
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://sandbox-api.anymarket.com.br/v2/skus/{{id_sku}}/marketplaces/
+  body: none
+  auth: bearer
+}
+
+headers {
+  gumgaToken: 216389891L216388382C150651914028100E1506520940281O216388382.I
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

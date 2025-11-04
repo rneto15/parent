@@ -1,0 +1,42 @@
+meta {
+  name: Comissão de Produto
+  type: http
+  seq: 11
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/ProdComission
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "items": [
+          {
+              "sku": "17_MktPlace",
+              "price": 15000,
+              "seller": "1"
+          },
+          {
+              "sku": "16_MktPlace",
+              "price": 17800,
+              "seller": "3"
+          }
+      ]
+  }
+}
+
+docs {
+  Este Endpoint está disponível apenas para clientes com o parâmetro especificado, caso negativo retornará erro.  
+  Esta requisição é destinada para ambientes em que a comissão de lojista não é armazenada.  
+  O campo **Price** deve ser informado em centavos.
+}

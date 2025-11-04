@@ -1,0 +1,31 @@
+meta {
+  name: GET
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{endpoint}}/v2/orders?createdAfter=2022-03-13T00:00:00&createdBefore=2022-03-14T00:00:00&limit=100&sort=createdAt&offset=0
+  body: none
+  auth: bearer
+}
+
+params:query {
+  createdAfter: 2022-03-13T00:00:00
+  createdBefore: 2022-03-14T00:00:00
+  limit: 100
+  sort: createdAt
+  offset: 0
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+  ~offset: 1
+  ~limit: 10
+  ~createdAfter: 2022-03-14T00:00:00
+}
+
+auth:bearer {
+  token: gumgaToken=259045569L259038655E1631710044369C163170824609600O259038655.I
+}

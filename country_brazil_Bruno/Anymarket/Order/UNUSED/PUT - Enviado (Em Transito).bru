@@ -1,0 +1,35 @@
+meta {
+  name: PUT - Enviado (Em Transito)
+  type: http
+  seq: 8
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/orders/{{ID_ORDER}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "order_id": "ID_PEDIDO",
+    "status": "PAID_WAITING_DELIVERY",
+    "tracking": {
+      "date": "2016-03-11T11:42:53Z",
+      "shippedDate": "2016-03-11T11:42:53Z",
+      "estimateDate": "2016-03-16T11:42:53Z",
+      "carrier": "Correios Correios-Sedex",
+      "number": "99998880000111",
+      "url": "http://www.example.com.vr"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+meta {
+  name: Criar Atributo Customizado
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Products/attributes
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "attribute": [
+          {
+              "sku": "GG008",
+              "name": "Alergênico",
+              "value": "Se contém material alergênico."
+          }
+      ]
+  }
+}
+
+docs {
+  Caso o seller venda produtos com atributos não existentes no sistema, é possível criar atributos personalizados.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Atributo inserido com sucesso." como valor.
+}

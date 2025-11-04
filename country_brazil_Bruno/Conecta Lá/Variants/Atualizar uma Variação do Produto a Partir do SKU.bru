@@ -1,0 +1,40 @@
+meta {
+  name: Atualizar uma Variação do Produto a Partir do SKU
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://teste.conectala.com.br/app/Api/V1/Variations/sku/{{SKU_PROD}}/{{SKU_VAR}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "variation": {
+          "qty": 700,
+          "price": 399.59,
+          "EAN": "",
+          "images": [
+              "https://img.terabyteshop.com.br/produto/g/gabinete-gamer-redragon-bluestreak-mid-tower-vidro-temperado-black-sem-fonte-sem-fan-gc-ma211_125354.jpg"
+          ]
+      }
+  }
+}
+
+docs {
+  Atualiza a variação dos skus fornecidos.
+  
+  O primeiro sku se refere ao sku do produto pai. O segundo sku é referente ao sku da variação a ser atualizada.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Product variation updated successfully" como valor.
+}

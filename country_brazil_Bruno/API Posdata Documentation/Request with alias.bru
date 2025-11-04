@@ -1,0 +1,20 @@
+meta {
+  name: Request with alias
+  type: http
+  seq: 14
+}
+
+get {
+  url: https://api-eu.preprod.subsidia.org/posdata_api/poslogs?transactionID=50-68-68-20200304173128-5-820359622
+  body: none
+  auth: none
+}
+
+params:query {
+  transactionID: 50-68-68-20200304173128-5-820359622
+}
+
+headers {
+  Authorization: Bearer your-fed-token
+  x-api-key: your-x-api-key
+}

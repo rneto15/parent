@@ -1,0 +1,82 @@
+meta {
+  name: POST - Variação
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/products
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "id": null,
+    "title": "Product Var Example",
+    "description": "Product Var Example",
+    "nbm": {
+      "id": "0"
+    },
+    "brand": {
+      "id": "2712",
+      "name": "10"
+    },
+    "origin": {
+      "id": "0"
+    },
+    "category": {
+      "id": "38762"
+    },
+    "model": "10",
+    "warrantyText": "10",
+    "warrantyTime": "10",
+    "weight": 1,
+    "height": 10,
+    "width": 10,
+    "length": 10,
+    "images": [{
+      "main": true,
+      "url": "http://www.example.com/desert_3.jpg"
+    }, {
+      "main": false,
+      "url": "http://www.example.com/desert_3.jpg",
+      "variation": "RED"
+    }],
+    "priceFactor": 99,
+    "calculatedPrice": true,
+    "characteristics": [],
+    "skus": [{
+      "variations": {
+        "Color": "BLUE"
+      },
+      "price": 150,
+      "amount": "1.0000",
+      "ean": null,
+      "partnerId": "ProductVarExample-BLUE",
+      "title": "Product Var Example-BLUE",
+      "idProduct": null,
+      "internalIdProduct": "7"
+    }, {
+      "variations": {
+        "Color": "RED"
+      },
+      "price": 150,
+      "amount": "10.0000",
+      "ean": null,
+      "partnerId": "ProductVarExample-RED",
+      "title": "Product Var Example-RED",
+      "idProduct": null,
+      "internalIdProduct": "8"
+    }]
+  }
+}

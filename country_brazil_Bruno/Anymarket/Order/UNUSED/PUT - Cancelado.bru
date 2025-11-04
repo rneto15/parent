@@ -1,0 +1,26 @@
+meta {
+  name: PUT - Cancelado
+  type: http
+  seq: 11
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/orders/{{ID_Pedido}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "status": "CANCELED"
+  }
+}

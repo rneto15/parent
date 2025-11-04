@@ -1,0 +1,20 @@
+meta {
+  name: Products by skuId
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/catalog_system/pub/products/search?fq=skuId:2145708344
+  body: none
+  auth: none
+}
+
+params:query {
+  fq: skuId:2145708344
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

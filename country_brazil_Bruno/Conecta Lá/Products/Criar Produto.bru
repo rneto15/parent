@@ -1,0 +1,128 @@
+meta {
+  name: Criar Produto
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Products
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "product": {
+          "name": "Gabinete Gamer",
+          "sku": "GG004",
+          "active": "enabled",
+          "description": "<p>Gabinete Gamer com RGB</p>",
+          "price": 399.90,
+          "qty": 15,
+          "ean": "",
+          "sku_manufacturer": "GRED",
+          "net_weight": 0.250,
+          "gross_weight": 0.300,
+          "width": 3,
+          "height": 9,
+          "depth": 5,
+          "guarantee": 6,
+          "origin": 1,
+          "unity": "UN",
+          "ncm": "",
+          "manufacturer": "Redragon",
+          "extra_operating_time": 0,
+          "category": "PC GAMER > GABINETE",
+          "images": ["https://img.terabyteshop.com.br/produto/g/gabinete-gamer-redragon-bluestreak-mid-tower-vidro-temperado-black-sem-fonte-sem-fan-gc-ma211_125354.jpg"],
+          "types_variations": [
+              "color","size"
+          ],
+          "product_variations": [
+              {
+                  "sku": "GG004_1",
+                  "qty": 4,
+                  "color": "verde",
+                  "size": "G",
+                  "EAN": "",
+                  "images": ["https://img.terabyteshop.com.br/produto/g/gabinete-gamer-redragon-bluestreak-mid-tower-vidro-temperado-black-sem-fonte-sem-fan-gc-ma211_125354.jpg"]
+              },
+              {
+                  "sku": "GG004_2",
+                  "qty": 2,
+                  "color": "marrom",
+                  "size": "P",
+                  "EAN": "",
+                  "images": ["https://img.terabyteshop.com.br/produto/g/gabinete-gamer-redragon-bluestreak-mid-tower-vidro-temperado-black-sem-fonte-sem-fan-gc-ma211_125354.jpg"]
+              }
+          ]
+      }
+  }
+}
+
+docs {
+  Cria um produto.
+  
+  Não é necessário preencher os campos <i>product_variations</i> e <i>types_variations</i> caso o produto que se quer adicionar não tenha variação.
+  
+  <table>
+  	<tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  	<tr><td>name</td><td>Nome do produto (limitado a 60 caracteres).</td><td>String</td></tr>
+  	<tr><td>sku</td><td>Código SKU do produto.</td><td>String</td></tr>
+  	<tr><td>active</td><td>Status do produto, tendo como valores possíveis "enabled" e "disabled".</td><td>String</td></tr>
+  	<tr><td>description</td><td>Descrição do produto (limitado a 2000 caracteres).</td><td>String</td></tr>
+  	<tr><td>price</td><td>Valor de venda.</td><td>Float</td></tr>
+  	<tr><td>qty</td><td>Quantidade em estoque.</td><td>Float</td></tr>
+  	<tr><td>ean</td><td>(Opcional) Código EAN (caso seja informado, será validado).</td><td>String</td></tr>
+  	<tr><td>sku_manufacturer</td><td>Código SKU do fabricante.</td><td>String</td></tr>
+  	<tr><td>net_weight</td><td>Peso líquido (em Kg).</td><td>Float</td></tr>
+  	<tr><td>gross_weight</td><td>Peso bruto (em Kg).</td><td>Float</td></tr>
+  	<tr><td>width</td><td>Largura (em cm) maior do que 0 (zero).</td><td>Float</td></tr>
+  	<tr><td>height</td><td>Altura (em cm) maior do que 0 (zero).</td><td>Float</td></tr>
+  	<tr><td>depth</td><td>Profundidade (em cm) maior do que 0 (zero).</td><td>Float</td></tr>
+  	<tr><td>guarantee</td><td>(Opcional) Garantia (em meses).</td><td>Integer</td></tr>
+  	<tr><td>ncm</td><td>(Opcional) Código NCM.</td><td>String</td></tr>
+  	<tr><td>origin</td><td>Origem do produto, com código de 0 a 8. (<a href="http://legislacao.sef.sc.gov.br/html/regulamentos/icms/ricms_01_10.htm" target="_blank">Visualizar origens</a>.)</td><td>Integer</td></tr>
+  	<tr><td>unity</td><td>Unidade (UN/Kg).</td><td>String</td></tr>
+  	<tr><td>manufacturer</td><td>Fabricante.</td><td>String</td></tr>
+  	<tr><td>category</td><td>(Opcional) Categoria da plataforma.</td><td>String</td></tr>
+  	<tr><td>types_variations</td><td>
+  	(<i>Opcional. Caso não exista product_variations, deixar em branco ou não informar.</i>)
+  	Tipo de variação do produto. 
+  	Tipos disponíveis: color, size e voltage. 
+  	Observação: Aqui somente é feita a especificação de alguma variação do produto, o valor da variação é preenchido em <i>types_variations</i>.
+  <pre><code>
+  "types_variations": [
+   "color",
+   "size",
+   "voltage"
+  ]</code></pre></td><td>Array</td></tr>
+  	<tr><td>product_variations</td><td>
+  	(<i>Opcional, caso não exista types_variations.</i>)
+  	Aqui é feito o preenchimento do valor da variação especificada em <i>types_variations</i>.
+  	<pre><code>
+  "product_variations": [
+   {
+    "sku": "SKU-VAR", // deve ser único
+    "qty": 50,
+    "price": 49.90, // Padrão: preço do produto pai.
+    "EAN": "7892509078405", // deve ser único
+    "images": [.....],
+    "color": "Verde",
+    "size": "G",
+    "voltage": 220 //usar 110, 220 ou bivolt
+   }
+  ]</code></pre></td><td>Array</td></tr>
+  	<tr><td>extra_operating_time</td><td>(Opcional) Prazo operacional extra (em dias).</td><td>Integer</td></tr>
+  	<tr><td>images</td><td>(Opcional) Imagens do produto. Até 6 imagens.</td><td>Array</td></tr>
+  </table>
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Produto inserido com sucesso." como valor.
+}

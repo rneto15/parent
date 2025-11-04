@@ -1,0 +1,77 @@
+meta {
+  name: Conecta Lá
+  seq: 1
+}
+
+auth {
+  mode: none
+}
+
+vars:pre-request {
+  x-user-email: Tiago.zambetta@decathlon.com
+  x-email: Tiago.zambetta@decathlon.com
+  x-api-key: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6NywiZW1haWwiOiJUaWFnby56YW1iZXR0YUBkZWNhdGhsb24uY29tIn0.eIHTxpHzSvVMa7BHpfmx6XfXTifjVjGNBArDvEDpzCs
+  x-store-key: 1
+  x-store-seller-key: 1
+  x-provider-key: 7
+}
+
+docs {
+  Boas-vindas à documentação da API.
+  
+  A API é utilizada como um meio de integração junto a Plataformas de E-commerce, Marketplaces, ERPs, Hubs etc.
+  
+  A integração é gratuita, não cobramos taxas ou mensalidades pela utilização da nossa API. Agimos dessa forma justamente para facilitar a vida de nossos usuários ao integrarem nossos serviços aos fluxos de seus sistemas.
+  
+  Caso você queira utilizar os nossos serviços dentro do seu e-commerce, verifique primeiro se sua plataforma já possui integração com nosso sistema. Caso ainda não possua, entre em contato conosco para que possamos analisar a viabilidade de uma parceria. Agora, se você possuir uma loja de desenvolvimento próprio e também quiser integrar conosco, basta disponibilizar o link deste conteúdo para seu desenvolvedor.
+  
+  # Suporte
+  
+  Caso você não encontre aqui a informação que busca, ou se tiver ficado com dúvida sobre algum processo específico, fique à vontade para entrar em contato com os *devs* do nosso suporte especializado através do e-mail api@conectala.com.br.
+  
+  **Atenção**: A equipe da Conecta Lá não presta serviços de consultoria. Por isso, não analisaremos códigos em nosso suporte.
+  
+  # Ambiente de Teste
+  
+  Nós disponibilizamos um ambiente de desenvolvimento para a realização dos testes. Para poder usar o ambiente, envie um e-mail de solicitação de acesso para que possamos realizar o cadastrado de um usuário de integração.
+  
+  Neste ambiente, é possível realizar requisições para nossa API sem receio de cometer qualquer erro.
+  
+  Os exemplos de requisições abaixo usam "teste" nos endpoints, mas cada um dos ambientes atualmente suportados deve substituir esse prefixo conforme a seguinte tabela:
+  
+  <table>
+  <tr><td><b>Ambiente</b></td><td><b>Endpoint Base</b></td></tr>
+  <tr><td>Casa & Video</td><td>casaevideoteste.conectala.com.br</td></tr>
+  <tr><td>Decathlon</td><td>decathlonteste.conectala.com.br</td></tr>
+  <tr><td>Grupo Soma</td><td>gsomateste.conectala.com.br</td></tr>
+  <tr><td>Multifast</td><td>multifastteste.conectala.com.br</td></tr>
+  <tr><td>Novo Mundo</td><td>novomundoteste.conectala.com.br</td></tr>
+  <tr><td>Ortobom</td><td>ortobomteste.conectala.com.br</td></tr>
+  <tr><td>Vertem</td><td>vertemteste.conectala.com.br</td></tr>
+  </table>
+  
+  # Autenticação da API
+  
+  Para se autenticar na API, é necessário enviar os seguintes dados no cabeçalho da requisição:
+  
+  <table>
+  <tr><td><b>Campo</b></td><td><b>Descrição</b></td></tr>
+  <tr><td>x-user-email</td><td>Usuário para se autenticar.</td></tr>
+  <tr><td>x-api-key</td><td>API key para comunicação.</td></tr>
+  <tr><td>x-store-key</td><td>Código da loja.</td></tr>
+  <tr><td>Content-Type</td><td>Com o conteúdo "application/json".</td></tr>
+  <tr><td>accept</td><td>Com o conteúdo "application/json;charset=UTF-8".</td></tr>
+  </table>
+  
+  Para autenticar como fornecedor, é necessário enviar os seguintes dados no cabeçalho da requisição:
+  
+  <table>
+  <tr><td><b>Campo</b></td><td><b>Descrição</b></td></tr>
+  <tr><td>x-email</td><td>E-mail do responsável do fornecedor para se autenticar.</td></tr>
+  <tr><td>x-api-key</td><td>API key do fornecedor para comunicação.</td></tr>
+  <tr><td>x-provider-key</td><td>Código do fornecedor.</td></tr>
+  <tr><td>x-store-seller-key</td><td>Código da loja a ser consultada.</td></tr>
+  <tr><td>Content-Type</td><td>Com o conteúdo "application/json".</td></tr>
+  <tr><td>accept</td><td>Com o conteúdo "application/json;charset=UTF-8".</td></tr>
+  </table>
+}

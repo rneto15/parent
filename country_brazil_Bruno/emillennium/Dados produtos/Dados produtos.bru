@@ -1,0 +1,21 @@
+meta {
+  name: Dados produtos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{endpoint}}/api/millenium!decathlon/relatorios/dadosprodutos?$format=json&$dateformat=ISO
+  body: none
+  auth: basic
+}
+
+params:query {
+  $format: json
+  $dateformat: ISO
+}
+
+auth:basic {
+  username: dash
+  password: 1GmNnZZV
+}

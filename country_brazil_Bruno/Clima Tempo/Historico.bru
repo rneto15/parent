@@ -1,0 +1,16 @@
+meta {
+  name: Historico
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://apiadvisor.climatempo.com.br/api/v1/history/locale/3477?token={{token_historico}}&from=2024-06-11
+  body: none
+  auth: none
+}
+
+params:query {
+  token: {{token_historico}}
+  from: 2024-06-11
+}

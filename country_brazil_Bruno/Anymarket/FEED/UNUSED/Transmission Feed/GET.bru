@@ -1,0 +1,24 @@
+meta {
+  name: GET
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{endpoint}}/v2/transmissions/feeds?limit=100
+  body: none
+  auth: bearer
+}
+
+params:query {
+  limit: 100
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

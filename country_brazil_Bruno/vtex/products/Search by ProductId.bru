@@ -1,0 +1,20 @@
+meta {
+  name: Search by ProductId
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/catalog_system/pub/products/search?fq=productId:19813
+  body: none
+  auth: none
+}
+
+params:query {
+  fq: productId:19813
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

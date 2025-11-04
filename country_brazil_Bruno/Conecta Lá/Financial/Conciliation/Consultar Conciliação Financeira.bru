@@ -1,0 +1,31 @@
+meta {
+  name: Consultar Conciliação Financeira
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/Financial/conciliation/{{lote}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-provider-key}}
+  x-store-seller-key: {{x-store-seller-key}}
+}
+
+docs {
+  Consulta os pedidos da conciliação por ciclos de pagamento.
+  
+  <table>
+  <tr><td><b>Atributo</b></td><td><b>Descrição</b></td><td><b>Tipo</b></td></tr>
+  <tr><td>lote</td><td>Número do lote da conciliação.</td><td>string</td></tr>
+  </table>
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" retorna todos os pedidos envolvidos na conciliação (listados de acordo com os gatilhos parametrizados no sistema) e os pedidos cancelados no período do ciclo informado.
+}

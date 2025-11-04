@@ -1,0 +1,16 @@
+meta {
+  name: Get SKU specifications
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/catalog_system/pvt/sku/stockkeepingunitbyid/{{sku_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

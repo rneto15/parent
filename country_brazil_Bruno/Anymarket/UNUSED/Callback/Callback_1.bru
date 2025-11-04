@@ -1,0 +1,20 @@
+meta {
+  name: Callback_1
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{endpoint}}/v2/callbacks
+  body: none
+  auth: bearer
+}
+
+headers {
+  gumgaToken: LG1496074907203R-1527319198
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

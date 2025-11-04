@@ -1,0 +1,24 @@
+meta {
+  name: GET
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://api.anymarket.com.br/v2/stocks/locals
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  gumgaToken: {{gumgaToken}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+docs {
+  GET STOCK
+}

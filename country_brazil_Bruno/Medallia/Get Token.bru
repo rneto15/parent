@@ -1,0 +1,25 @@
+meta {
+  name: Get Token
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://decathlon.medallia.com/oauth/decathlon/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+auth:basic {
+  username: {{client_id}}
+  password: {{client_secret}}
+}
+
+body:form-urlencoded {
+  grant_type: client_credentials
+}
+
+script:post-response {
+  var jsonData = JSON.parse(responseBody);
+  bru.setEnvVar("access_token", jsonData.access_token);
+}

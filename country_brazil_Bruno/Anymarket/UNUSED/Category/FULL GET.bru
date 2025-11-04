@@ -1,0 +1,20 @@
+meta {
+  name:  FULL GET
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://sandbox-api.anymarket.com.br/v2/categories/fullPath
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  gumgaToken: {{gumgaToken}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

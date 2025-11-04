@@ -1,0 +1,28 @@
+meta {
+  name: get token
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/oauth/token
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  ~accept: */*
+}
+
+body:json {
+  {
+    "username": "{{user}}",
+    "password": "{{pass}}"
+  }
+}
+
+script:post-response {
+  var jsonData = JSON.parse(responseBody);
+  bru.setEnvVar("access_token", jsonData.access_token);
+}

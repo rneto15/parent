@@ -1,0 +1,25 @@
+meta {
+  name: Lista faturamento por cod_pedidov
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{endpoint}}/api/millenium_eco_Cdecathlon/pedido_venda/listafaturamentos?%24dateformat=ISO&%24format=json&cod_pedidov=VTX-11385247-811
+  body: none
+  auth: basic
+}
+
+params:query {
+  %24dateformat: ISO
+  %24format: json
+  cod_pedidov: VTX-11385247-811
+  ~gera_xml: T
+  ~cancelada: true
+  ~cod_pedidov: {{cod_pedidov}}
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

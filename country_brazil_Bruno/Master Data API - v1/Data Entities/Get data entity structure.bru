@@ -1,0 +1,70 @@
+meta {
+  name: Get data entity structure
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/dataentities/:acronym
+  body: none
+  auth: apikey
+}
+
+params:path {
+  acronym: SP
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/vnd.vtex.ds.v10+json
+  Accept: application/json
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}
+
+script:post-response {
+  // Validate status 2xx 
+  test("[GET]::/api/dataentities/:acronym - Status code is 2xx", function () {
+  //    pm.response.to.be.success;
+  });
+  
+  // Validate if response header has matching content-type
+  test("[GET]::/api/dataentities/:acronym - Content-Type is application/json", function () {
+     expect(res.getHeader("Content-Type")).to.include("application/json");
+  });
+  
+  // Validate if response has JSON Body 
+  test("[GET]::/api/dataentities/:acronym - Response has JSON Body", function () {
+  //     pm.response.to.have.jsonBody();
+  });
+  
+  // Response Validation
+  const schema = {"title":"Data entity structure","required":["acronym","name","primaryKeyType","allowGetAll","fields"],"type":"object","description":"Data entity structure.","properties":{"acronym":{"title":"acronym","type":"string","description":"Two-letter string that identifies the data entity."},"name":{"title":"name","type":"string","description":"Data entity name."},"primaryKeyType":{"title":"primaryKeyType","type":"string","description":"Primary key type."},"allowGetAll":{"title":"allowGetAll","type":"boolean","description":"Defines if it will be allowed to retrieve all fields from documents from this data entity at once using the [Get document](https://developers.vtex.com/docs/api-reference/masterdata-api#get-/api/dataentities/-acronym-/documents/-id-) endpoint (`true`) or not (`false`)."},"fields":{"title":"fields","type":"array","description":"List of fields that documents from the given data entity have.","items":{"title":"Field","description":"Field information.","required":["name","type","displayName","isNullable","isSearchable","isFilter","isInternal"],"type":"object","properties":{"name":{"type":"string","description":"Field name."},"type":{"type":"string","description":"Field type."},"displayName":{"type":"string","description":"Field display name."},"isNullable":{"type":"boolean","description":"Defines whether the field is nullable (`true`) or not (`false`)."},"isSearchable":{"type":"boolean","description":"Defines whether the field is searchable (`true`) or not (`false`)."},"isFilter":{"type":"boolean","description":"Defines whether the field is a filter (`true`) or not (`false`)."},"isInternal":{"type":"boolean","description":"Defines whether the field is for internal use only (`true`) or not (`false`)."}}}}}}
+  
+  // Validate if response matches JSON schema 
+  test("[GET]::/api/dataentities/:acronym - Schema is valid", function() {
+  //     pm.response.to.have.jsonSchema(schema,{unknownFormats: ["int32", "int64", "float", "double"]});
+  });
+  
+}
+
+docs {
+  Returns the data entity structure with its respective fields and data type. 
+  
+  ## Permissions
+  
+  Any user or [application key](https://developers.vtex.com/docs/guides/api-authentication-using-application-keys) must have at least one of the appropriate [License Manager resources](https://help.vtex.com/en/tutorial/license-manager-resources--3q6ztrC8YynQf6rdc6euk3) to be able to successfully run this request. Otherwise they will receive a status code `403` error. These are the applicable resources for this endpoint:
+  
+  | **Product** | **Category** | **Resource** |
+  | --------------- | ----------------- | ----------------- |
+  | Dynamic Storage | Dynamic storage generic resources | **Master Data administrator** |
+  | Dynamic Storage | Data entity | **View data entity details** |
+  
+  There are no applicable [predefined roles](https://help.vtex.com/en/tutorial/predefined-roles--jGDurZKJHvHJS13LnO7Dy) for this resource list. You must [create a custom role](https://help.vtex.com/en/tutorial/roles--7HKK5Uau2H6wxE1rH5oRbc#creating-a-role) and add at least one of the resources above in order to use this endpoint.To learn more about machine authentication at VTEX, see [Authentication overview](https://developers.vtex.com/docs/guides/authentication).
+  
+  >❗ To prevent integrations from having excessive permissions, consider the [best practices for managing app keys](https://help.vtex.com/en/tutorial/best-practices-application-keys--7b6nD1VMHa49aI5brlOvJm) when assigning License Manager roles to integrations.
+}

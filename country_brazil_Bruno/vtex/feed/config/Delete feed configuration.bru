@@ -1,0 +1,25 @@
+meta {
+  name: Delete feed configuration
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/api/orders/feed/config
+  body: none
+  auth: none
+}
+
+params:path {
+  accountName: {{accountName}}
+  environment: {{environment}}
+}
+
+headers {
+  X-VTEX-API-AppKey:  {{appKey}}
+  X-VTEX-API-AppToken:  {{appToken}}
+}
+
+docs {
+  Deletes the configuration set up in [Feed v3](https://developers.vtex.com/docs/guides/orders-feed).
+}

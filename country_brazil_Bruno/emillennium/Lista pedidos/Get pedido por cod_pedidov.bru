@@ -1,0 +1,25 @@
+meta {
+  name: Get pedido por cod_pedidov
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{endpoint}}/api/millenium_eco_cdecathlon/pedido_venda/listapedidos3_dash?$dateformat=ISO&$TOP=15&$format=json&cod_pedidov={{cod_pedidov}}
+  body: none
+  auth: basic
+}
+
+params:query {
+  $dateformat: ISO
+  $TOP: 15
+  $format: json
+  cod_pedidov: {{cod_pedidov}}
+  ~TRANS_ID: {{trans_id}}
+  ~cod_pedidov: 90207166
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

@@ -1,0 +1,42 @@
+meta {
+  name: List orders Copy_1
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/oms/pvt/orders?orderBy=orderId,asc&page=1&per_page=1&f_creationDate=creationDate:[2019-06-18T00:00:00.000Z TO 2019-07-03T23:59:59.999Z]
+  body: none
+  auth: none
+}
+
+params:query {
+  orderBy: orderId,asc
+  page: 1
+  per_page: 1
+  f_creationDate: creationDate:[2019-06-18T00:00:00.000Z TO 2019-07-03T23:59:59.999Z]
+}
+
+headers {
+  Accept: application/json
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}
+
+docs {
+  Retrieves a list of orders according to the filters described below. 
+  
+  The limit of information retrieval is 30 pages, the default number of orders per page is 15 and it is possible to configure it up to 100 using the  `per_page` parameter. 
+  
+   Be aware that as of October 3rd, 2018, this endpoint will not return the `items` property. 
+  
+  > This should **not** be used for integrations. Use the [orders Feed or hook](https://developers.vtex.com/docs/guides/orders-feed) for this purpose.
+  
+  This endpoint returns only orders that already have been indexed, which takes approximately four minutes. Because of this, the data retrieved may present inconsistencies. To get live up-to-date information and [build order integrations](https://developers.vtex.com/vtex-rest-api/docs/erp-integration-set-up-order-integration) use the [orders Feed or hook](https://developers.vtex.com/docs/guides/orders-feed).
+  
+  > 📘 Onboarding guide 
+  >
+  > Check the new [Orders onboarding guide](https://developers.vtex.com/vtex-rest-api/docs/orders-overview). We created this guide to improve the onboarding experience for developers at VTEX. It assembles all documentation on our Developer Portal about Orders and is organized by focusing on the developer's journey.
+  
+  
+}

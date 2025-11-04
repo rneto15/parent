@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "troque facil",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

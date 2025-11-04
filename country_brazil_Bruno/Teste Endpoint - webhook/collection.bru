@@ -1,0 +1,16 @@
+meta {
+  name: Teste Endpoint - webhook
+  seq: 1
+}
+
+auth {
+  mode: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+vars:pre-request {
+  access_token: 
+}

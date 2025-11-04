@@ -1,0 +1,35 @@
+meta {
+  name: scroll
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/dataentities/{{acronym}}/scroll?_fields=_all&_sort=createdIn DESC&_where=PriceModified=False&_size=100
+  body: none
+  auth: none
+}
+
+params:query {
+  _fields: _all
+  _sort: createdIn DESC
+  _where: PriceModified=False
+  _size: 100
+  ~_where: ((createdIn between 2024-10-28T00:00:00 AND 2024-12-31T23:59:59) AND  PriceModified=True)
+  ~_token: {{token}}
+  ~_where%3DPriceModified%20is%20True: 
+}
+
+headers {
+  Accept: application/vnd.vtex.ds.v10+json
+  Content-Type: application/json
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}
+
+script:post-response {
+  token=res.getHeader("X-VTEX-MD-TOKEN");
+  if(!(token==null)){
+  bru.setEnvVar("token", token);
+  }
+}

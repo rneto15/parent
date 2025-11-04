@@ -1,0 +1,30 @@
+meta {
+  name: POST
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/products/{{ID_PRODUCT}}/skus
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "title": "Example",
+    "partnerId": "PZ-0003",
+    "ean": "2112345678900",
+    "price": "762.14",
+    "amount": "100"
+  }
+}

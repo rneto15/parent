@@ -1,0 +1,20 @@
+meta {
+  name: GET BY ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{endpoint}}/v2/orders/38560233
+  body: none
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

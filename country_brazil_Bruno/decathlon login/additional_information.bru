@@ -1,0 +1,24 @@
+meta {
+  name: additional_information
+  type: http
+  seq: 5
+}
+
+post {
+  url: https://api.preprod.decathlon.net/identity/v1/members/me/profile/additional_information
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{access_token}}
+  Content-Type: application/json
+  X-api-key: {{x-api-key_add}}
+}
+
+body:json {
+  {
+    "id": "cpf",
+    "value": "{{cpf}}"
+  }
+}

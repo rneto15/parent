@@ -1,0 +1,34 @@
+meta {
+  name: Retrieve feed items
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/orders/feed?maxlot={{maxLot}}
+  body: none
+  auth: none
+}
+
+params:query {
+  maxlot: {{maxLot}}
+}
+
+params:path {
+  accountName: {{accountName}}
+  environment: {{environment}}
+}
+
+headers {
+  Accept: application/json
+  X-VTEX-API-AppKey:  {{appKey}}
+  X-VTEX-API-AppToken:  {{appToken}}
+}
+
+docs {
+  Retrieve items from [feed](https://developers.vtex.com/docs/guides/orders-feed) queue. 
+  
+  The event will be removed if the message `send retry` is equal to, or greater than the maximum retention period.
+  
+  > This API will return `404 Not Found` if there is no [Feed Configuration](https://developers.vtex.com/docs/guides/orders-feed) available for the given X-VTEX-API-AppKey.
+}

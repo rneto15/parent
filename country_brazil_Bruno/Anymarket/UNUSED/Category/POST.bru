@@ -1,0 +1,31 @@
+meta {
+  name: POST
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/categories
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: L21146866G1483645011464R-1078358226
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "name": "Cat Vinicius",
+    "partnerId": "1234",
+    "priceFactor": 1,
+    "calculatePrice": true,
+     "definitionPriceScope": "COST"
+  }
+  
+}

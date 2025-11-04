@@ -1,0 +1,27 @@
+meta {
+  name: PUT
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/transmissions/{{ID_TRANSMISSION}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+     "publicationStatus": "ACTIVE",
+     "marketplaceStatus": "Sincronizado"
+  }
+}

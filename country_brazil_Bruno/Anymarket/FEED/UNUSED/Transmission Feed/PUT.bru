@@ -1,0 +1,27 @@
+meta {
+  name: PUT
+  type: http
+  seq: 2
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/transmissions/feeds/{{ID_FEED}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "token":"TOKEN_FEED"
+  }
+  
+}

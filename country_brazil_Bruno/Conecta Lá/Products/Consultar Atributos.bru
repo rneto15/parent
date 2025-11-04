@@ -1,0 +1,40 @@
+meta {
+  name: Consultar Atributos
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/Products/attributes/{{SKU}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+docs {
+  Atributos são informações técnicas descritivas dos produtos.
+  
+  Alguns atributos poderão ser visualizados apenas após a categorização do produto. Esses atributos são específicos para cada categoria nos marketplaces.
+  
+  Existem atributos que poderão ser visualizados apenas após a categorização do produto. Esses atributos são específicos para cada categoria nos marketplaces.
+  
+  <table>
+    <tr><td>Atributo</td><td>Descrição</td></tr>
+    <tr><td>Code</td><td>Código do atributo</td></tr>
+    <tr><td>Attribute</td><td>Nome do atributo.</td></tr>
+    <tr><td>Original_value</td><td>Valor atual do atributo.</td></tr>
+    <tr><td>Required</td><td>Campo obrigatório.</td></tr>
+    <tr><td>Multiple_values</td><td>Aceita múltiplos valores, informados através de um array.</td></tr>
+    <tr><td>Allowed_value</td><td>Valores obrigatórios.</td></tr>
+    <tr><td>Note</td><td>Observação do atributo.</td></tr>
+  </table>
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com as informações sobre cada um dos atributos do produto.
+}

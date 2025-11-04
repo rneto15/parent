@@ -1,0 +1,29 @@
+meta {
+  name: Alterar Empresa
+  type: http
+  seq: 3
+}
+
+put {
+  url: https://teste.conectala.com.br/app/Api/V1/Companies/{{ID}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-provider-key}}
+}
+
+docs {
+  ### Endpoint destinado para requisições realizadas por fornecedores.
+  
+  Atualiza o cadastro de uma empresa de um fornecedor.
+  
+  Não é possível atualizar o CNPJ, inscrição estadual ou inscrição municipal da empresa,.
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com o valor "Updated data".
+}

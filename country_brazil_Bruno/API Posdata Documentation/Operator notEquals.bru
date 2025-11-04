@@ -1,0 +1,20 @@
+meta {
+  name: Operator notEquals
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://api-eu.preprod.subsidia.org/posdata_api/poslogs?transaction.businessUnit.unitID.name.notEquals=HEARTBEAT
+  body: none
+  auth: none
+}
+
+params:query {
+  transaction.businessUnit.unitID.name.notEquals: HEARTBEAT
+}
+
+headers {
+  Authorization: Bearer your-fed-token
+  x-api-key: your-x-api-key
+}

@@ -1,0 +1,36 @@
+meta {
+  name: Consultar Categorias
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/Categories
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+docs {
+  Consulta de todas as categorias disponíveis para uso.
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com todas as categorias cadastradas.
+  
+  Os campos retornados de cada categoria são os seguintes:
+  
+  <table>
+  <tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  <tr><td>code</td><td>Código da categoria.</td><td>Integer</td></tr>
+  <tr><td>name</td><td>Nome completo da categoria.</td><td>String</td></tr>
+  <tr><td>status</td><td>Status da categoria, tendo como valores possíveis "enabled" e "disabled".</td><td>String</td></tr>
+  <tr><td>update_date</td><td>Data em que a categoria foi atualizada.</td><td>String</td></tr>
+  <tr><td>volume</td><td>Tipo do produto, encapsula o código do volume (code) e nome do volume (products).</td><td>Array</td></tr>
+  </table>
+}

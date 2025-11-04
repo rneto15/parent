@@ -1,0 +1,21 @@
+meta {
+  name: GET Types
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://api.anymarket.com.br/v2/variations
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  gumgaToken: {{gumgaToken}}
+  gumgaOI: {{gumgaOI}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

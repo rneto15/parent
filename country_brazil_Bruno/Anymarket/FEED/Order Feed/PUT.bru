@@ -1,0 +1,27 @@
+meta {
+  name: PUT
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{endpoint}}/v2/orders/feeds/44313009
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "token":"98ec2550-c849-494a-8a45-d2069307b5ad"
+  }
+  
+}

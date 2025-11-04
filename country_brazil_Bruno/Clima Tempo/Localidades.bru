@@ -1,0 +1,16 @@
+meta {
+  name: Localidades
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://apiadvisor.climatempo.com.br/api/v1/locale/city?&token={{token_previsao}}
+  body: none
+  auth: none
+}
+
+params:query {
+  null: null
+  token: {{token_previsao}}
+}

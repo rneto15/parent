@@ -1,0 +1,22 @@
+meta {
+  name: Lista reembolso Copy
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{endpoint}}/api/millenium!decathlon.chamados.listareembolsos?$dateformat=iso&$format=json&trans_id=0
+  body: none
+  auth: basic
+}
+
+params:query {
+  $dateformat: iso
+  $format: json
+  trans_id: 0
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

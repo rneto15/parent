@@ -1,0 +1,41 @@
+meta {
+  name: Criar Ocorrência de Rastreio
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Tracking/occurrence/{{order}}/{{tracking_code}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "occurrence": {
+          "date": "2021-12-28 11:30:00",
+          "occurrence": "Coletado",
+          "place": "CD Florianópolis",
+          "street": "Av. Dep. Diomício Freitas",
+          "number": "1899",
+          "zipcode": "88047-400",
+          "neighborhood": "Carianos",
+          "city": "Florianópolis",
+          "state": "SC"
+      }
+  }
+}
+
+docs {
+  <h4>Método exclusivo para lojas que não utilizam a logística da Conecta Lá.</h4>
+  
+  O pedido deve estar com status 45 para enviar a ocorrência de rastreio.
+}

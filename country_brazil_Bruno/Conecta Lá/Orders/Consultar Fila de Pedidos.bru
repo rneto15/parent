@@ -1,0 +1,92 @@
+meta {
+  name: Consultar Fila de Pedidos
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://decathlonmarketplace.conectala.com.br/app/Api/V1/Orders?new_order=true
+  body: none
+  auth: none
+}
+
+params:query {
+  new_order: true
+}
+
+headers {
+  Content-Type: application/json
+  x-email: {{x-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-provider-key}}
+  ~x-user-email: {{x-user-email}}
+  ~x-store-key: {{x-store-key}}
+  ~x-store-seller-key: 190
+}
+
+docs {
+  A consulta à fila de pedidos retorna todos os novos pedidos realizados e que sofreram alteração de status.
+  
+  Após a atualização ou criação do pedido consultado na plataforma, o mesmo deverá ser removido dessa lista, para que nas próximas consultas esse pedido não seja mais listado nem processado novamente.
+  
+  Ao realizar a ação de removê-lo da lista, entenderemos que foi possível processar o pedido.
+  
+  É possível identificar se esse é um novo pedido pelo campo <b>new_order</b>. Esse campo sempre receberá um valor booleano: caso o valor seja <i>true</i>, será um novo pedido e uma consulta [por pedido](https://documenter.getpostman.com/view/12130589/TzXumf8h#a099959d-d946-4c3f-8c16-34c044382997) deve ser feita para recuperar os dados do pedido e criar na plataforma; caso seja <i>false</i>, apenas atualiza seu status no pedido.
+  
+  Ao final da fila, ou ao não serem encontrados resultados, será retornado um Status 404 com o seguinte resultado:<br>
+  <pre><code>
+  {
+  	"success": false, 
+  	"message": "No results were found"
+  }
+  </code></pre>
+  
+  Em caso de sucesso, um resultado com seis chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "registers_count", informa a quantidade de registros da página atual. A terceira chave, intitulada "pages_count", informa a quantidade total de páginas de registros. A quarta chave, intitulada "page", informa o número da página atual. A quinta chave, intitulada "total_registers", informa a quantidade total de registros.
+  
+  A sexta chave, intitulada "result", tem os seguintes valores possíveis:
+  
+  <table>
+  <tr><td>order_code</td><td>Código do pedido.</td><td>Integer</td></tr>
+  <tr><td>status</td><td>Status do pedido, esse campo encapsula o código (code) do status e sua descrição (label).
+  <ul>
+  <li>Code: é o campo que recebe o código do status do pedido.</li>
+  <li>Label: é o campo que recebe o nome do status do pedido.</li>
+  </ul>
+  </td><td>Array</td></tr>
+  <tr><td>updated_at</td><td>Data em que o pedido foi atualizado.</td><td>String</td></tr>
+  <tr><td>new_order</td><td>Define se é um pedido novo ou não.</td><td>Boolean</td></tr>
+  </table>
+  
+  Os status possíveis dos pedidos são os seguintes:
+  
+  <table>
+  <tr><td>Código</td><td> Significado</td></tr>
+  <tr><td>1</td><td> Aguardando pagamento - Ainda não foi pago.</td></tr>
+  <tr><td>2</td><td> Processando pagamento.</td></tr>
+  <tr><td>3</td><td> Aguardando faturamento - O pedido foi pago, está aguardando ser faturado.</td></tr>
+  <tr><td>4</td><td> Aguardando coleta/envio - Aguardando o seller enviar ou a transportadora coletar.</td></tr>
+  <tr><td>5</td><td> Em transporte - O pedido já foi enviado ao cliente.</td></tr>
+  <tr><td>6</td><td> Entregue - O pedido já foi entregue ao cliente.</td></tr>
+  <tr><td>40</td><td> Aguardando rastreio - Pedido faturado, aguardando envio de rastreio.</td></tr>
+  <tr><td>43</td><td> Aguardando coleta/envio - Pedido com rastreio, aguardando ser coletado/enviado.</td></tr>
+  <tr><td>45</td><td> Em transporte - O pedido já foi enviado ao cliente.</td></tr>
+  <tr><td>50</td><td> Aguardando etiqueta - Pedido já faturado, contratando frete.</td></tr>
+  <tr><td>51</td><td> PLP gerada - Enviar rastreio para o marketplace.</td></tr>
+  <tr><td>52</td><td> Pedido faturado - Enviar NF-e para o marketplace.</td></tr>
+  <tr><td>53</td><td> Aguardando coleta/envio - Aguardando pedido ser enviado/coletado para rastrear.</td></tr>
+  <tr><td>55</td><td> Em transporte - Avisar o marketplace que o pedido foi enviado.</td></tr>
+  <tr><td>56</td><td> Processando nota fiscal - Processando NF e aguardando envio (módulo faturador).</td></tr>
+  <tr><td>57</td><td> Nota fiscal com erro - Problema para faturar o pedido (módulo faturador).</td></tr>
+  <tr><td>58</td><td> Aguardando retirada - Pedido aguardando retirada em alguma agência.</td></tr>
+  <tr><td>59</td><td> Em transporte - Pedido com extravio/devolução ao remetente.</td></tr>
+  <tr><td>60</td><td> Entregue - Avisar ao marketplace que foi entregue.</td></tr>
+  <tr><td>80</td><td> Problema na contratação do frete.</td></tr>
+  <tr><td>90</td><td> Cancelamento solicitado.</td></tr>
+  <tr><td>95</td><td> Pedido cancelado pelo seller - Cancelado pelo vendedor.</td></tr>
+  <tr><td>96</td><td> Pedido cancelado - Cancelado antes de realizar o pagamento.</td></tr>
+  <tr><td>97</td><td> Pedido cancelado - Cancelado após o pagamento.</td></tr>
+  <tr><td>98</td><td> Cancelar pedido na transportadora - Cancelar rastreio na transportadora (não nos correios).</td></tr>
+  <tr><td>99</td><td> Cancelar pedido no Marketplace - Avisar o cancelamento para o marketplace.</td></tr>
+  <tr><td>101</td><td> Sem cotação de frete - A contratação do frete deve ser feita manualmente (não nos correios).</td></tr>
+  </table>
+}

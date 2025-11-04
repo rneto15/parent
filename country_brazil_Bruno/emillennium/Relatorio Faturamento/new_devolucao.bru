@@ -1,0 +1,23 @@
+meta {
+  name: new_devolucao
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{endpoint}}/api/MILLENIUM!DECATHLON/RELATORIOS/new_devolucao?datai=2023-07-01&dataf=2023-07-31&$format=json&$dateformat=iso
+  body: none
+  auth: basic
+}
+
+params:query {
+  datai: 2023-07-01
+  dataf: 2023-07-31
+  $format: json
+  $dateformat: iso
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

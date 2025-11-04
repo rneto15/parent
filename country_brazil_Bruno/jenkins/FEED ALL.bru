@@ -1,0 +1,20 @@
+meta {
+  name: FEED ALL
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseurl}}/rssAll
+  body: none
+  auth: basic
+}
+
+headers {
+  ~Accept: text/html
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{token}}
+}

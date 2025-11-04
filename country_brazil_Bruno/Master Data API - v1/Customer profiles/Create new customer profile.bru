@@ -1,0 +1,86 @@
+meta {
+  name: Create new customer profile
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/dataentities/CL/documents
+  body: json
+  auth: apikey
+}
+
+params:query {
+  ~_schema: schema
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/vnd.vtex.ds.v10+json
+  Content-Type: application/json
+  Accept: application/json
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}
+
+body:json {
+  {
+    "email": "clark.kent@examplemail.com",
+    "firstName": "Clark",
+    "lastName": "Kent",
+    "phone": "+12025550195",
+    "documentType": "CPF",
+    "document": "12345678900",
+    "isCorporate": false,
+    "isNewsletterOptIn": false,
+    "localeDefault": "en-US"
+  }
+}
+
+script:post-response {
+  // Validate status 2xx 
+  test("[POST]::/api/dataentities/CL/documents - Status code is 2xx", function () {
+  //    pm.response.to.be.success;
+  });
+  
+  // Validate if response header has matching content-type
+  test("[POST]::/api/dataentities/CL/documents - Content-Type is application/json", function () {
+     expect(res.getHeader("Content-Type")).to.include("application/json");
+  });
+  
+  // Validate if response has JSON Body 
+  test("[POST]::/api/dataentities/CL/documents - Response has JSON Body", function () {
+  //     pm.response.to.have.jsonBody();
+  });
+  
+  // Response Validation
+  const schema = {"required":["Id","Href"],"type":"object","description":"Response body object.","properties":{"Id":{"type":"string","description":"ID of the document that was created or updated."},"Href":{"type":"string","description":"Document reference URL."}}}
+  
+  // Validate if response matches JSON schema 
+  test("[POST]::/api/dataentities/CL/documents - Schema is valid", function() {
+  //     pm.response.to.have.jsonSchema(schema,{unknownFormats: ["int32", "int64", "float", "double"]});
+  });
+  
+}
+
+docs {
+  Creates new customer profile.
+  
+  ## Permissions
+  
+  Any user or [application key](https://developers.vtex.com/docs/guides/api-authentication-using-application-keys) must have at least one of the appropriate [License Manager resources](https://help.vtex.com/en/tutorial/license-manager-resources--3q6ztrC8YynQf6rdc6euk3) to be able to successfully run this request. Otherwise they will receive a status code `403` error. These are the applicable resources for this endpoint:
+  
+  | **Product** | **Category** | **Resource** |
+  | --------------- | ----------------- | ----------------- |
+  | Dynamic Storage | Dynamic storage generic resources | **Insert or update document (not remove)** |
+  | Dynamic Storage | Dynamic storage generic resources | **Full access to all documents** |
+  | Dynamic Storage | Dynamic storage generic resources | **Master Data administrator** |
+  
+  There are no applicable [predefined roles](https://help.vtex.com/en/tutorial/predefined-roles--jGDurZKJHvHJS13LnO7Dy) for this resource list. You must [create a custom role](https://help.vtex.com/en/tutorial/roles--7HKK5Uau2H6wxE1rH5oRbc#creating-a-role) and add at least one of the resources above in order to use this endpoint.To learn more about machine authentication at VTEX, see [Authentication overview](https://developers.vtex.com/docs/guides/authentication).
+  
+  >❗ To prevent integrations from having excessive permissions, consider the [best practices for managing app keys](https://help.vtex.com/en/tutorial/best-practices-application-keys--7b6nD1VMHa49aI5brlOvJm) when assigning License Manager roles to integrations.
+}

@@ -1,0 +1,48 @@
+meta {
+  name: create account with tel
+  type: http
+  seq: 3
+}
+
+patch {
+  url: https://api-global.preprod.decathlon.net/identity/v1/members/profile
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{access_token}}
+  Content-Type: application/json
+  X-Context-Client: {{x-context-client}}
+  X-Location: BR
+  X-api-key: {{x-api-key}}
+  accept: application/json
+}
+
+body:json {
+  {
+    "location": "BR",
+    "claims": {
+      "name": "{{Firstname}}",
+      "given_name": "Usuário",
+      "family_name": "TESTE",
+      "middle_name": "Usuário TESTE",
+      "nickname": "user_test",
+      "email": "{{email}}",
+      "email_verified": false,
+      "gender": "male",
+      "birthdate": "1993-01-01",
+      "locale": "pt-BR",
+      "phone_number": "{{telefone}}",
+      "phone_verified": true
+    },
+    "credential": {
+      "password": "{{password}}"
+    },
+      "additional_information": [
+          {
+              "cpf": "{{cpf}}"
+          }
+      ]
+  }
+}

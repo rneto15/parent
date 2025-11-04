@@ -1,0 +1,74 @@
+meta {
+  name: Criar Rastreamento
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Tracking/{{Order}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "tracking": {
+          "date_tracking": "2020-01-16 10:15:37",
+          "items": [
+              {
+                  "sku": "GG007",
+                  "qty": 1,
+                  "code": "AA123456789BB",
+                  "method": "SEDEX",
+                  "service_id": "03220",
+                  "value": 10.90,
+                  "delivery_date": "",
+                  "url_label_a4": "",
+                  "url_label_thermic": "",
+                  "url_label_zpl": "",
+                  "url_plp": ""
+              }
+          ],
+          "track": {
+              "carrier": "CORREIOS",
+              "carrier_cnpj": "",
+              "url": " https://www2.correios.com.br/sistemas/rastreamento/"
+          }
+      }
+  }
+}
+
+docs {
+  <h4>Método exclusivo para lojas que não utilizam a logística da Conecta Lá.</h4>
+  
+  O pedido deve estar com status 40 para enviar o rastreamento.
+  
+  <table> 
+  <tbody><tr><td>Atributo</td><td>Descrição</td><td>Tipo</td><td>Obrigatório</td></tr>
+  <tr><td>date_tracking</td><td>Data em que os dados foram gerados.</td><td>Date</td><td>Sim</td></tr>
+  <tr><td>sku</td><td>Código sku do produto (Caso seja variação, deve ser informado o sku do produto pai).</td><td>String</td><td>Sim</td></tr>
+  <tr><td>qty</td><td>Quantidade de itens a serem postados nesse rastreio.</td><td>Integer</td><td>Sim</td></tr>
+  <tr><td>code</td><td>Código de rastreamento.</td><td>String</td><td>Sim</td></tr>
+  <tr><td>method</td><td>Método de envio.</td><td>String</td><td>Sim</td></tr>
+  <tr><td>service_id</td><td>ID do serviço contratado.</td><td>String</td><td>Sim</td></tr>
+  <tr><td>value</td><td>Valor do frete contratado.</td><td>Float</td><td>Sim</td></tr>
+  <tr><td>delivery_date</td><td>Data prevista para entrega.</td><td>Date</td><td>Não</td></tr>
+  <tr><td>url_label_a4</td><td>URL da etiqueta em PDF no formato A4.</td><td>String</td><td>Não</td></tr>
+  <tr><td>url_label_thermic</td><td>URL da etiqueta em PDF no formato térmica.</td><td>String</td><td>Não</td></tr>
+  <tr><td>url_label_zpl</td><td>URL da etiqueta em PDF no formato ZPL.</td><td>String</td><td>Não</td></tr>
+  <tr><td>url_plp</td><td>URL da PLP das etiquetas em PDF.</td><td>String</td><td>Não</td></tr>
+  <tr><td>carrier</td><td>Histórico de ocorrências do frete.</td><td>String</td><td>Sim</td></tr>
+  <tr><td>carrier_cnpj</td><td>CNPJ da transportadora.</td><td>String</td><td>Não</td></tr>
+  <tr><td>url</td><td>URL da transportadora para rastreamento.</td><td>String</td><td>Sim</td></tr>
+  </tbody> </table>
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com o valor "tracking successfully inserted".
+}

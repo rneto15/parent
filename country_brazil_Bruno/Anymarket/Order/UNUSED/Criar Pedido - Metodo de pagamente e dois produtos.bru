@@ -1,0 +1,111 @@
+meta {
+  name: Criar Pedido - Metodo de pagamente e dois produtos
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/orders
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "id": null,
+    "createdAt": "2017-01-16T14:48:03Z",
+    "status": "PAID_WAITING_SHIP",
+    "marketPlaceStatus": "PAID_WAITING_SHIP",
+    "marketPlace": "ECOMMERCE",
+    "marketPlaceId": "6325447332",
+    "marketPlaceShipmentStatus": "PENDING",
+    "transmissionStatus": "OK",
+    "discount": 0,
+    "freight": 60,
+    "gross": 200,
+    "total": 260,
+    "shipping": {
+      "city": "Maringa",
+      "state": "PR",
+      "country": "BR",
+      "address": "Avenida Horacio Raccanello Filho 5410 - Centro",
+      "zipCode": "87020035"
+    },
+    "buyer": {
+      "id": "123498",
+      "name": "USER TESTE",
+      "email": "USER@tes.com.br",
+      "document": "31882553144",
+      "documentType": "CPF",
+      "phone": "4498765432"
+    },
+    "payments": [
+      {
+        "method": "Boleto",
+        "value": 260.00,
+        "installments": 6,
+        "marketplaceId": "1",
+        "paymentMethodNormalized": "BOLETO BANCÁRIO",
+        "paymentDetailNormalized": "BOLETO BANCÁRIO"
+      }
+    ],
+    "items": [
+      {
+        "sku": {
+          "partnerId": ""
+        },
+        "amount": 1,
+        "unit": 100,
+        "price": 100,
+        "discount": 0,
+        "gross": 0,
+        "total": 130,
+        "shippings":[ 
+          {
+            "id": 1,
+            "shippingtype": "Correios PAC",
+            "shippingCarrierNormalized": "CORREIOS",
+            "shippingCarrierTypeNormalized": "PAC"
+          }
+          
+        ] 
+      },
+      {
+        "sku": {
+          "partnerId": "FEFU003SKIL038"
+        },
+        "amount": 1,
+        "unit": 100,
+        "price": 100,
+        "discount": 0,
+        "gross": 0,
+        "total": 130
+          
+       
+      }
+    ]
+  }
+}
+
+script:post-response {
+  test("Status code is 200", function() {
+    expect(Boolean(responseCode.code === 201)).to.be.true;
+  });
+  
+  // pm.setGlobalVariable("market_id", "{{$randomInt}}"+"{{$randomInt}}");
+}
+
+docs {
+  Método de pagemento:
+  CREDIT_CARD
+  
+}

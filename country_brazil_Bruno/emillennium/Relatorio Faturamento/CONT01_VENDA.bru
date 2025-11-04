@@ -1,0 +1,23 @@
+meta {
+  name: CONT01_VENDA
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{endpoint}}/api/MILLENIUM!DECATHLON/RELATORIOS/CONT01_VENDA?datai=2023-07-22&dataf=2023-07-31&$format=json&$dateformat=iso
+  body: none
+  auth: basic
+}
+
+params:query {
+  datai: 2023-07-22
+  dataf: 2023-07-31
+  $format: json
+  $dateformat: iso
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

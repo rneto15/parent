@@ -1,0 +1,21 @@
+meta {
+  name: List skus
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/catalog_system/pvt/sku/stockkeepingunitids?page=1&pagesize=100000000
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 1
+  pagesize: 100000000
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

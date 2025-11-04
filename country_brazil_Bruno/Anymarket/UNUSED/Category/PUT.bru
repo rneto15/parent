@@ -1,0 +1,30 @@
+meta {
+  name: PUT
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/categories/{{ID_CATEGORIA}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "name": "Category Example",
+    "partnerId": "root-example",
+    "priceFactor": 1.2,
+    "calculatePrice": true
+  }
+  
+}

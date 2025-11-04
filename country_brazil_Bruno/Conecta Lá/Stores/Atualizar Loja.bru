@@ -1,0 +1,43 @@
+meta {
+  name: Atualizar Loja
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://teste.conectala.com.br/app/Api/V1/Stores/{{ID}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "store": {
+          "store_name": "Novo Nome da Loja",
+          "catalogs": [
+              1
+          ],
+          "responsible": {
+              "name": "Novo Nome do Responsável"
+          }
+      }
+  }
+}
+
+docs {
+  <h3>Endpoint destinado para requisições realizadas por fornecedores.</h3>
+  
+  Atualiza o cadastro de uma loja de um fornecedor.
+  
+  <b>Não é possível atualizar o CNPJ da loja.</b>
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com o valor "Updated data".
+}

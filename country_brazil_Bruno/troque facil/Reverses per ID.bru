@@ -1,0 +1,15 @@
+meta {
+  name: Reverses per ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{endpoint}}/v3/api/reverses/{{reverse_id}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

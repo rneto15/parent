@@ -1,0 +1,15 @@
+meta {
+  name: Previsão 72h
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://apiadvisor.climatempo.com.br/api/v1/forecast/locale/3477/hours/72?token={{token_previsao}}
+  body: none
+  auth: none
+}
+
+params:query {
+  token: {{token_previsao}}
+}

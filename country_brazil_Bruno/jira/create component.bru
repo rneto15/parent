@@ -1,0 +1,32 @@
+meta {
+  name: create component
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseurl}}/rest/api/3/component
+  body: json
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{pass}}
+}
+
+body:json {
+  {
+    "assigneeType": "COMPONENT_LEAD",
+    "description": "{{description}}",
+    "isAssigneeTypeValid": true,
+    "leadAccountId": "{{assignee}}",
+    "name": "{{name}}",
+    "project": "{{project}}"
+  }
+}

@@ -1,0 +1,14 @@
+meta {
+  name: Clusters
+  seq: 9
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}

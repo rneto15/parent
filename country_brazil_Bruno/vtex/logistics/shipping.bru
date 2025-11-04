@@ -1,0 +1,49 @@
+meta {
+  name: shipping
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/logistics/pvt/shipping/calculate
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json; charset=utf-8
+  X-VTEX-API-AppKey:  {{appKey}}
+  X-VTEX-API-AppToken:  {{appToken}}
+}
+
+body:json {
+  [
+      {
+          "items": [
+              {
+                  "id": {{sku_id}},
+                  "groupItemId": null,
+                  "quantity": 1,
+                  "price": 0,
+                  "additionalHandlingTime": "00:00:00",
+                  "dimension": {
+                      "weight": 150,
+                      "height": 5,
+                      "width": 17,
+                      "length": 17
+                  }
+              }
+          ],
+          "location": {
+              "zipCode": "04080011",
+              "country": "BRA",
+              "point": [
+                  -43.32475950000003,
+                  -22.9999575
+              ]
+          },
+          "salesChannel": "3"
+      }
+  ]
+}

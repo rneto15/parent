@@ -1,0 +1,26 @@
+meta {
+  name: get users
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/license-manager/site/pvt/logins/list/paged?numItems=10&pageNumber=1&sort=name&sortType=ASC&page=23
+  body: none
+  auth: none
+}
+
+params:query {
+  numItems: 10
+  pageNumber: 1
+  sort: name
+  sortType: ASC
+  page: 23
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

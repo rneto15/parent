@@ -1,0 +1,21 @@
+meta {
+  name: Delete a collection
+  type: http
+  seq: 3
+}
+
+delete {
+  url: https://api.getpostman.com/collections/{{collectionId}}
+  body: none
+  auth: apikey
+}
+
+auth:apikey {
+  key: X-API-Key
+  value: {{token}}
+  placement: header
+}
+
+docs {
+  Deletes a collection.
+}

@@ -1,0 +1,66 @@
+meta {
+  name: Atualizar Produto pelo SKU do Fornecedor
+  type: http
+  seq: 2
+}
+
+patch {
+  url: http://teste.conectala.com.br/app/Api/V1/Catalogs/skumanufacturer/{{sku}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: email@email.com
+  x-api-key: CHAVE
+  x-provider-key: 00
+}
+
+body:json {
+  {
+      "product": {
+      	"name": "Novo nome do produto no catálogo",
+      	"price": 1599.99,
+          "original_price": 1999.99
+  	}
+  }
+}
+
+docs {
+  Atualiza as informações de um produto.
+  
+  As informações fornecidas no cabeçalho são as do fornecedor.
+  
+  Para atualizar um produto, é necessário obedecer aos seguintes critérios:
+  - Pelo menos uma informação deve ser preenchida;
+  - Se o campo da informação preenchida espera um valor alfa-numérico, ele deve ser não-vazio;
+  - Se o campo da informação preenchida espera um valor numérico, ele deve ser maior do que 0 (zero).
+  
+  Os campos do produto que podem ser atualizados são os seguintes:
+  
+  <table>
+  	<tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  	<tr><td>name</td><td>Nome do produto (limitado a 60 caracteres).</td><td>String</td></tr>
+  	<tr><td>active</td><td>Status do produto, é necessário informar enabled/disabled.</td><td>String</td></tr>
+  	<tr><td>description</td><td>Descrição do produto (limitado a 2000 caracteres).</td><td>String</td></tr>
+  	<tr><td>price</td><td>Valor de venda.</td><td>Float</td></tr>
+  	<tr><td>original_price</td><td>Valor original de venda.</td><td>Float</td></tr>
+  	<tr><td>ean</td><td>Código EAN (quando informado, é validado).</td><td>String</td></tr>
+  	<tr><td>sku_manufacturer</td><td>Código SKU do fabricante.</td><td>String</td></tr>
+  	<tr><td>net_weight</td><td>Peso líquido (em Kg).</td><td>Float</td></tr>
+  	<tr><td>gross_weight</td><td>Peso bruto (em Kg).</td><td>Float</td></tr>
+  	<tr><td>width</td><td>Largura (em cm) maior do que 0 (zero).</td><td>Float</td></tr>
+  	<tr><td>height</td><td>Altura (em cm) maior do que 0 (zero).</td><td>Float</td></tr>
+  	<tr><td>depth</td><td>Profundidade (em cm) maior do que 0 (zero)</td><td>Float</td></tr>
+  	<tr><td>guarantee</td><td>Garantia (em meses).</td><td>Integer</td></tr>
+  	<tr><td>ncm</td><td>Código NCM.</td><td>String</td></tr>
+  	<tr><td>origin</td><td>Origem do produto, com código de 0 a 8. (<a href="http://legislacao.sef.sc.gov.br/html/regulamentos/icms/ricms_01_10.htm" target="_blank">Visualizar origens</a>.)</td><td>Integer</td></tr>
+  	<tr><td>unity</td><td>Unidade (em UN/Kg).</td><td>String</td></tr>
+  	<tr><td>manufacturer</td><td>Fabricante.</td><td>String</td></tr>
+  	<tr><td>category</td><td>Categoria da plataforma.</td><td>String</td></tr>
+  </table>
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "message" é retornada com o valor "Produto atualizado com sucesso.".
+}

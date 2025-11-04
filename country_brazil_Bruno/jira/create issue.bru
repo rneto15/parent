@@ -1,0 +1,53 @@
+meta {
+  name: create issue
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseurl}}/rest/api/3/issue
+  body: json
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{pass}}
+}
+
+body:json {
+  {
+      "fields": {
+          "project": {
+              "key": "DAT"
+          },
+          "summary": "teste_170524",
+          "priority": {
+              "id": "3"
+          },
+          "description": {
+              "content": [
+                  {
+                      "content": [
+                          {
+                              "text": "teste_170524",
+                              "type": "text"
+                          }
+                      ],
+                      "type": "paragraph"
+                  }
+              ],
+              "type": "doc",
+              "version": 1
+          },
+          "issuetype": {
+              "name": "Improvement Request"
+          }
+      }
+  }
+}

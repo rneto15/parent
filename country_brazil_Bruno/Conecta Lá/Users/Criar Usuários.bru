@@ -1,0 +1,54 @@
+meta {
+  name: Criar Usuários
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Users
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "user": {
+          "username": "Nome do usuário",
+          "email": "emailinventadoil@email.com.br",
+          "group_id": "1",
+          "group_name": "Parceiro",
+          "firstname": "Nome",
+          "lastname": "Sobrenome",
+          "phone": "2122223333",
+          "legal_administrator": "0",
+          "cpf": "",
+          "company_id": "11",
+          "store_id": "12",
+          "send_welcome_email": "1"
+      }
+  }
+}
+
+docs {
+  <h3>Endpoint destinado para requisições realizadas por fornecedores.</h3>
+  
+  Cadastra um usuário para um fornecedor.
+  
+  Campos que devem ser preenchidos para cadastro de loja:
+  
+  <table><tbody><tr><td><b>Atributo</b></td><td><b>Descrição</b></td><td><b>Tipo</b></td></tr><tr><td>user.username</td><td>Nome do usuário</td><td>String</td></tr><tr><td>user.email</td><td>email do usuário. Deve ser úncio no sellercenter e é campo usado para o login</td><td>String</td></tr><tr><td>user.group_id</td><td>ID do grupo do usuário. Opcional se informado o group_name</td><td>Int</td></tr><tr><td>user.group_name</td><td>Nome do grupo do usuário, se não for informado e também não for informado o group_id, será usado o grupo default do sellercenter definido em parâmetro</td><td>float</td></tr><tr><td>user.firstname</td><td>Primeiro Nome</td><td>string</td></tr><tr><td>user.lastname</td><td>Sobrebome</td><td>string</td></tr><tr><td>user.phone</td><td>Telefone de contato</td><td>String</td></tr><tr><td>user.legal_administrator</td><td>Indica se este usuário é o representante legal desta loja o que permitirá assianar digitalmente aos contratos com o sellercenter</td><td>boolean (0 / 1)</td></tr><tr><td>user.cpf</td><td>CPF, só obrigatório se for o representante legal da loja.</td><td>String</td></tr><tr><td>user.company_id</td><td>ID da empresa que este usuário pertence</td><td>String</td></tr><tr><td>user.store_id</td><td>ID da loja que este usuário administra. Se for colocado 0, este usuário administrará todas as lojas da empresa de company_id</td><td>Inteiro</td></tr><tr><td>user.send_welcome_email</td><td>Indica se o email de boasvindas com usuário e senha deve ser enviado para o usuário. Default = 0.</td><td>boolean (0/1)</td></tr></tbody></table>
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem "true" como valor.
+  
+  A segunda chave, intitulada "result", fornece informações sobre o usuário cadastrado, com as seguintes chaves:
+  
+  <table><tbody><tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr><tr><td>data.email</td><td>email do usuário</td><td>String</td></tr><tr><td>data.password</td><td>senha inicial do usuário já expirada</td><td>String</td></tr><tr><td>message</td><td>Resultado da ação.</td><td>String</td></tr></tbody></table>
+}

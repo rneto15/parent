@@ -1,0 +1,18 @@
+meta {
+  name: List all SKUs of a trade policy
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/catalog_system/pvt/sku/stockkeepingunitidsbysaleschannel
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

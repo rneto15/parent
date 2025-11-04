@@ -1,0 +1,33 @@
+meta {
+  name: Consultar Empresas
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://teste.conectala.com.br/app/Api/V1/Companies
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-provider-key}}
+}
+
+docs {
+  ### Endpoint destinado para requisições realizadas por fornecedores.
+  
+  Consulta todas as empresas cadastradas por um fornecedor.
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com as informações das empresas cadastradas.
+  
+  **Filtros:**
+  
+  *   ?company_id={id}
+  *   ?company_name={company_name}
+  *   ?cnpj={cnpj}
+}

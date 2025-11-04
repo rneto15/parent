@@ -1,0 +1,27 @@
+meta {
+  name: PERFORMANCE_NFS
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{endpoint}}/api/MILLENIUM!MONITORDEC.PEDIDO_VENDA.PERFORMANCE_NFS?datai= 2020-03-08 21:40:00&dataf= 2020-03-09 21:46:00&%24format=json
+  body: none
+  auth: basic
+}
+
+params:query {
+  datai:  2020-03-08 21:40:00
+  dataf:  2020-03-09 21:46:00
+  %24format: json
+  ~limit: 10
+}
+
+headers {
+  Dkt_api: DKTLAB
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

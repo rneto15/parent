@@ -1,0 +1,15 @@
+meta {
+  name: Previsão 15 dias
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://apiadvisor.climatempo.com.br/api/v1/forecast/locale/3477/days/15?token={{token_previsao}}
+  body: none
+  auth: none
+}
+
+params:query {
+  token: {{token_previsao}}
+}

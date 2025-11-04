@@ -1,0 +1,80 @@
+meta {
+  name: Atualizar Todas as Variações do Produto a Partir do SKU
+  type: http
+  seq: 2
+}
+
+put {
+  url: http://teste.conectala.com.br/app/Api/V1/Variations/{{SKU}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "variation": {
+          "types_variations": [
+              "color",
+              "voltage"
+          ],
+          "product_variations": [
+              {
+                  "sku_variation": "P001-1",
+                  "voltage": 110,
+                  "color": "Vermelho",
+                  "qty": 25,
+                  "price": 69.90,
+                  "EAN": "7892509078405",
+                  "images": [
+                      "https://conectala.com.br/image"
+                  ]
+              },
+              {
+                  "sku_variation": "P001-2",
+                  "voltage": "bivolt",
+                  "color": "Verde",
+                  "qty": 35
+              }
+          ]
+      }
+  }
+}
+
+docs {
+  A atualização direta do SKU do produto pai realizará a atualização de todas as variações. Ou seja, as variações já existentes serão **substituídas** pelas que forem enviadas na requisição, **removendo** as anteriores e **incluindo** as novas variações.
+  
+  No Body da requisição, uma lista chamada "types_variations" deve ser fornecida para informar quais tipos de variações serão atualizadas. Os tipos de variações informados serão atualizados com o conteúdo fornecido na lista "product_variations".
+  
+  <table><tbody>
+  <tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  <tr><td>sku</td><td>Código SKU.</td><td>String</td></tr>
+  <tr><td>types_variations</td><td><p>Tipo de variação de produto (tipos disponíveis: color, size e voltage).</p><pre class="plain"><code><div>"types_variations": [
+  </div><div> "color",
+  </div><div> "size",
+  </div><div> "voltage"
+  </div><div>]
+  </div></code></pre></td><td>Array</td></tr>
+  <tr><td>product_variations</td><td><p>Informar o tipo de variação em types_variations.<br></p><pre class="plain"><code><div>"product_variations": [
+  </div><div> {
+  </div><div>  "sku_variation": "SKU-VARIANTE",
+  </div><div>  "qty": 50,
+  </div><div>  "price": 49.90,
+  </div><div>  "EAN": "",
+  </div><div>  "images": [],
+  </div><div>  "color": "Verde",
+  </div><div>  "size": "G",
+  </div><div>  "voltage": "220"
+  </div><div> }
+  </div><div>]</code></pre></td><td>Array</td></tr>
+  </tbody></table>
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Product variation updated successfully" como valor.
+}

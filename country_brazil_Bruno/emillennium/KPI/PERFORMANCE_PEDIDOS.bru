@@ -1,0 +1,23 @@
+meta {
+  name: PERFORMANCE_PEDIDOS
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{endpoint}}/api/MILLENIUM!MONITORDEC.PEDIDO_VENDA.PERFORMANCE_PEDIDOS?dataf=2023-04-23 15:00:00&%24format=json&datai=2023-04-23 13:00:00
+  body: none
+  auth: basic
+}
+
+params:query {
+  dataf: 2023-04-23 15:00:00
+  %24format: json
+  datai: 2023-04-23 13:00:00
+  ~%24TOP: 15
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

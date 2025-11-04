@@ -1,0 +1,14 @@
+meta {
+  name: Scroll
+  seq: 6
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}

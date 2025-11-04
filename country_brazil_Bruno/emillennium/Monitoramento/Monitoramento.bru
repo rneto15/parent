@@ -1,0 +1,25 @@
+meta {
+  name: Monitoramento
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{endpoint}}/api/millenium!decathlon.chamados.monitoramento?$dateformat=iso&$format=json
+  body: none
+  auth: basic
+}
+
+params:query {
+  $dateformat: iso
+  $format: json
+}
+
+headers {
+  Dkt_api: DKTLAB
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

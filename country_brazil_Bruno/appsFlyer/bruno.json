@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "appsFlyer",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

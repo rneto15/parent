@@ -1,0 +1,28 @@
+meta {
+  name: PUT Value
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/variations/{{ID_VARIATION}}/values/{{ID_VALUE}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  gumgaToken: {{gumgaToken}}
+  gumgaOI: {{gumgaOI}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "description": "Errado",
+    "partnerId": "X-ERRADO"
+  }
+}

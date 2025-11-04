@@ -1,0 +1,17 @@
+meta {
+  name: get stores
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/vlm/account/stores
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

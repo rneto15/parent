@@ -1,0 +1,29 @@
+meta {
+  name: PUT Type
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/variations/{{ID_VARIATION}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  gumgaToken: {{gumgaToken}}
+  gumgaOI: {{gumgaOI}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "name": "Variation (8) Test",
+    "visualVariation": "true",
+    "partnerId": "OWN-VARIATION"
+  }
+}

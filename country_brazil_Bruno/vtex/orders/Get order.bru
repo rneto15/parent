@@ -1,0 +1,16 @@
+meta {
+  name: Get order
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/oms/pvt/orders/1503631555045-01
+  body: none
+  auth: none
+}
+
+headers {
+  X-VTEX-API-AppKey:  {{appKey}}
+  X-VTEX-API-AppToken:  {{appToken}}
+}

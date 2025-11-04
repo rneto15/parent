@@ -1,0 +1,20 @@
+meta {
+  name: DELETE
+  type: http
+  seq: 6
+}
+
+delete {
+  url: http://sandbox-api.anymarket.com.br/v2/categories/{{ID_CATEGORIA}}
+  body: multipartForm
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

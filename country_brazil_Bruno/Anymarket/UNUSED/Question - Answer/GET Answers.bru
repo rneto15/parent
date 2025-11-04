@@ -1,0 +1,21 @@
+meta {
+  name: GET Answers
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://sandbox-api.anymarket.com.br/v2/questions/{{ID_PERGUNTA}}/answers
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  gumgaToken: {{gumgaToken}}
+  gumgaOI: {{gumgaOI}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

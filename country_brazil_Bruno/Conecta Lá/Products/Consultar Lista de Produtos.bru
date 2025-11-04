@@ -1,0 +1,47 @@
+meta {
+  name: Consultar Lista de Produtos
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://decathlonmarketplace.conectala.com.br/app/Api/V1/Products/list
+  body: none
+  auth: none
+}
+
+headers {
+  x-api-key: {{x-api-key}}
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-store-seller-key: 1
+  x-email: {{x-email}}
+  x-provider-key: {{x-provider-key}}
+  ~x-user-email: {{x-user-email}}
+  ~x-store-key: {{x-store-key}}
+}
+
+docs {
+  Consulta com filtros da listagem de produtos. Os filtros possíveis são os seguintes:
+  
+  | | |  
+  | --- | --- |
+  | page | Número da página de resultados a ser consultada, iniciado em 1. Caso um número não seja informado, será considerado pelo sistema como sendo 1. |  
+  | per_page | Quantidade de resultados por página. Caso um número não seja informado, será considerado pelo sistema como 100. Máximo de 100 registros. |  
+  | status | Filtrar os produtos por status: enabled (Ativos) ou disabled (Inativos). |  
+  | store | Filtrar os produtos pelo id da loja. |  
+  | cnpj | Filtrar os produtos pelo CNPJ da loja. Nesse filtro a formatação do CNPJ é opcional. |  
+  | with_stock | Filtrar produtos com saldo em estoque. |
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "result", tem os seguintes valores possíveis:
+  
+  | | | |  
+  | --- | --- | --- |
+  | error | Informa se foi encontrado algum erro (valor "true") ou não (valor "false"). | Boolean |  
+  | registers_count | Quantidade de registros da página atual. | Integer |  
+  | pages_count | Quantidade total de páginas de registros. | Integer |  
+  | page | Número da página atual. | Integer |  
+  | data | Informações sobre os produtos. | Array |
+  
+  O fim da página dos resultados pode ser assinalado de duas formas diferentes: o campo *data*, dentro de *result*, pode ter valor vazio ou mostrar os campos *pages_count* e *page* com o mesmo valor.
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Products by ProductId
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/catalog/pvt/product/101379
+  body: none
+  auth: none
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

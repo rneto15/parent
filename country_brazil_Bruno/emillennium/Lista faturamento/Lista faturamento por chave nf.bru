@@ -1,0 +1,28 @@
+meta {
+  name: Lista faturamento por chave nf
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{endpoint}}/api/millenium_eco_Cdecathlon/pedido_venda/listafaturamentos?%24dateformat=ISO&%24format=json&chave_nf=35250102314041002121550040031256081038143323
+  body: none
+  auth: basic
+}
+
+params:query {
+  %24dateformat: ISO
+  %24format: json
+  chave_nf: 35250102314041002121550040031256081038143323
+  ~gera_xml: T
+  ~cancelada: true
+}
+
+headers {
+  Dkt_api: DKTLAB
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

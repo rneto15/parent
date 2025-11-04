@@ -1,0 +1,33 @@
+meta {
+  name: fullfilment simulation
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}} /api/checkout/pvt/orderForms/simulation?sc=3
+  body: json
+  auth: none
+}
+
+params:query {
+  sc: 3
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}
+
+body:json {
+  {
+      "items": [
+        {
+          "id": "2147298710",
+          "quantity": 1,
+          "seller": "1",
+        }
+      ],
+      "isCheckedIn": false,
+    }
+}

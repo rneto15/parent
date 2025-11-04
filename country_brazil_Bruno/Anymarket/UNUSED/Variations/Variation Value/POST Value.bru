@@ -1,0 +1,28 @@
+meta {
+  name: POST Value
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/variations/{{ID_VARIATION}}/values
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  gumgaToken: {{gumgaToken}}
+  gumgaOI: {{gumgaOI}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "description": "Errado",
+    "partnerId": "X-ERRAD"
+  }
+}

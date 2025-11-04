@@ -1,0 +1,52 @@
+meta {
+  name: Criar Variação
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Variations/{{SKU}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "variation": {
+          "types_variations": [
+              "color",
+              "size",
+              "voltage"
+          ],
+          "product_variations": [
+              {
+                  "sku_variation": "P100-1",
+                  "size": "P",
+                  "color": "Vermelho",
+                  "voltage": 220,
+                  "qty": 25,
+                  "price": 69.90,
+                  "EAN": "7892509078405"
+              }
+          ]
+      }
+  }
+}
+
+docs {
+  É necessário informar o SKU do produto e suas novas variações (<i>é necessário saber quais os tipos de variação o produto pai espera receber</i>).
+  
+  Os tipos de variações para cadastro disponíveis são: <i>size</i>, <i>color</i> e <i>voltage</i>. Os tipos de variações devem ser informados como no cadastro do produto, ou seja, se no cadastro do produto existem apenas os tipos de variações <i>color</i> e <i>size</i>, eles devem ser informados no cadastro de uma nova variação. Caso haja alguma divergência, ela será apresentada através de uma mensagem de erro.
+  
+  Caso se queira adicionar um tipo de variação que não exista no cadastro do produto pai, ele deve ser atualizado pelo endpoint <b>Atualizar Todas as Variações do Produto a Partir do SKU</b> e informar as variações já existentes, além do novo tipo de variação, pois todas as variações serão excluídas e adicionadas novamente, com a inclusão do novo valor.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "product variation successfully inserted" como valor.
+}

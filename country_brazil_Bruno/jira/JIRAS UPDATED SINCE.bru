@@ -1,0 +1,20 @@
+meta {
+  name: JIRAS UPDATED SINCE
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseurl}}/rest/api/3/search?jql=project = TOR and updated >= "2024-04-29 13:40"
+  body: none
+  auth: basic
+}
+
+params:query {
+  jql: project = TOR and updated >= "2024-04-29 13:40"
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{pass}}
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Consultar Variação
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/Variations/{{SKU}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+docs {
+  Consulta as variações do sku fornecido.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "result", tem como valor uma chave intitulada "product" que concentra as informações sobre o produto consultado.
+}

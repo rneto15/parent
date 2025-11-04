@@ -1,0 +1,27 @@
+meta {
+  name: Excluir Pedido da Fila
+  type: http
+  seq: 6
+}
+
+delete {
+  url: http://teste.conectala.com.br/app/Api/V1/Orders/{{Order}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: email@email.com
+  x-api-key: CHAVE
+  x-store-key: 00
+}
+
+docs {
+  Serão enfileirados os pedidos que tenham sofrido alteração de status mais do que uma vez, sendo possível consultá-los em uma única requisição. Eles podem ser removidos informando o código do pedido. Caso o pedido apareça mais do que uma vez na fila, será removido o mais antigo.
+  
+  Se o registro excluído tem a combinação de <code>status->code=3</code> e <code>new_order=true</code>, haverá a inserção na fila de um novo registro, com <code>status->code=3</code> e <code>new_order=false</code>. Isso ocorre para que seja possível criar o pedido na outra ponta e para que ele permaneça na fila aguardando a nota fiscal. Desse modo, permite-se que ele não fique preso com um registro de novo pedido na fila.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Order successfully removed from queue" como valor.
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Request com os responses da API_dados puros
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://decathlonstore.myvtex.com/api/dataentities/CL/scroll?_token=FGluY2x1ZGVfY29udGV4dF91dWlkDnF1ZXJ5VGhlbkZldGNoAhZvcFpQWnY3elRMaTl4SG0zRTdmLUhnAAAAABa5064WaHlLRDlaWHdTckc0SEwwMWJPNmhCURZTTXdCR2tiUlM0aVVqUUNIc0VzTm5BAAAAABvdY44WRHpDMHpaU3RSNFcyeHd5X1pOcV9zZw==
+  body: none
+  auth: apikey
+}
+
+params:query {
+  _token: FGluY2x1ZGVfY29udGV4dF91dWlkDnF1ZXJ5VGhlbkZldGNoAhZvcFpQWnY3elRMaTl4SG0zRTdmLUhnAAAAABa5064WaHlLRDlaWHdTckc0SEwwMWJPNmhCURZTTXdCR2tiUlM0aVVqUUNIc0VzTm5BAAAAABvdY44WRHpDMHpaU3RSNFcyeHd5X1pOcV9zZw==
+}
+
+headers {
+  X-VTEX-API-AppToken: DZACYRKBZPGIVIAMUUJZFQGNIBILHQBHLMXORSBPHMNGABQUQEHKPPGGTDEPSWRMFCTXIHPGIPCOSURFGWRCSBOOYOUXVEHWAWBSSIUPLZCFCIZFATAYJKVHZJANYMYR
+  X-VTEX-API-AppKey: vtexappkey-decathlonpro-XCXWGJ
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}

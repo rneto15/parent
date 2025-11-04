@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "NorteMKT",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

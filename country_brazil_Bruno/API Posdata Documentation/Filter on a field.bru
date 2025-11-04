@@ -1,0 +1,20 @@
+meta {
+  name: Filter on a field
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://api-eu.preprod.subsidia.org/posdata_api/poslogs?transaction.businessUnit.unitID.name=HEARTBEAT
+  body: none
+  auth: none
+}
+
+params:query {
+  transaction.businessUnit.unitID.name: HEARTBEAT
+}
+
+headers {
+  Authorization: Bearer your-fed-token
+  x-api-key: your-x-api-key
+}

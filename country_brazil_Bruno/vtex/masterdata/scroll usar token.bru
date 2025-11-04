@@ -1,0 +1,21 @@
+meta {
+  name: scroll usar token
+  type: http
+  seq: 7
+}
+
+get {
+  url: https://decathlonstore.myvtex.com/api/dataentities/CL/scroll?_token={{token}}
+  body: none
+  auth: none
+}
+
+params:query {
+  _token: {{token}}
+}
+
+headers {
+  Accept: application/vnd.vtex.ds.v10+json
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

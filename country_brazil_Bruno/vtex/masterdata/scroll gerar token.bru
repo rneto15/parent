@@ -1,0 +1,31 @@
+meta {
+  name: scroll gerar token
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://decathlonstore.myvtex.com/api/dataentities/CL/scroll?_fields=id%2Ccheckouttag%2Crclastcart%2Crclastcartvalue%2Crclastsession%2ChomePhone%2Cphone%2Cemail%2CfirstName%2ClastName%2CbirthDate%2Cgender%2Crclastsessiondate%2Cdocument%2CcreatedIn%2CupdatedIn&_where=%28checkouttag%3C%3EFinalizado%20AND%20checkouttag%20%20is%20not%20null%20AND%20rclastsessiondate%20between%202025-06-27%20AND%202025-06-27%29
+
+  body: none
+  auth: none
+}
+
+params:query {
+  _fields: id%2Ccheckouttag%2Crclastcart%2Crclastcartvalue%2Crclastsession%2ChomePhone%2Cphone%2Cemail%2CfirstName%2ClastName%2CbirthDate%2Cgender%2Crclastsessiondate%2Cdocument%2CcreatedIn%2CupdatedIn
+  _where: %28checkouttag%3C%3EFinalizado%20AND%20checkouttag%20%20is%20not%20null%20AND%20rclastsessiondate%20between%202025-06-27%20AND%202025-06-27%29
+  
+}
+
+headers {
+  Accept: application/vnd.vtex.ds.v10+json
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}
+
+script:post-response {
+  token=res.getHeader("X-VTEX-MD-TOKEN");
+  if(!(token==null)){
+  bru.setEnvVar("token", token);
+  }
+}

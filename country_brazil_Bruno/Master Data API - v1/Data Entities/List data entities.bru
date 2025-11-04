@@ -1,0 +1,66 @@
+meta {
+  name: List data entities
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/dataentities
+  body: none
+  auth: apikey
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/vnd.vtex.ds.v10+json
+  Accept: application/json
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}
+
+script:post-response {
+  // Validate status 2xx 
+  test("[GET]::/api/dataentities - Status code is 2xx", function () {
+  //    pm.response.to.be.success;
+  });
+  
+  // Validate if response header has matching content-type
+  test("[GET]::/api/dataentities - Content-Type is application/json", function () {
+     expect(res.getHeader("Content-Type")).to.include("application/json");
+  });
+  
+  // Validate if response has JSON Body 
+  test("[GET]::/api/dataentities - Response has JSON Body", function () {
+  //     pm.response.to.have.jsonBody();
+  });
+  
+  // Response Validation
+  const schema = {"type":"array","items":{"title":"Listdataentity","required":["acronym","name","primaryKeyType","allowGetAll"],"type":"object","description":"Data entity information.","properties":{"acronym":{"title":"acronym","type":"string","description":"Two-letter string that identifies the data entity."},"name":{"title":"name","type":"string","description":"Data entity name."},"primaryKeyType":{"title":"primaryKeyType","type":"string","description":"Primary key type."},"allowGetAll":{"title":"allowGetAll","type":"boolean","description":"Defines if it will be allowed to retrieve all fields from documents from this data entity at once using the [Get document](https://developers.vtex.com/docs/api-reference/masterdata-api#get-/api/dataentities/-acronym-/documents/-id-) endpoint (`true`) or not (`false`)."}}}}
+  
+  // Validate if response matches JSON schema 
+  test("[GET]::/api/dataentities - Schema is valid", function() {
+  //     pm.response.to.have.jsonSchema(schema,{unknownFormats: ["int32", "int64", "float", "double"]});
+  });
+  
+}
+
+docs {
+  Retrieves the list of existing data entities in the store. 
+  
+  ## Permissions
+  
+  Any user or [application key](https://developers.vtex.com/docs/guides/api-authentication-using-application-keys) must have at least one of the appropriate [License Manager resources](https://help.vtex.com/en/tutorial/license-manager-resources--3q6ztrC8YynQf6rdc6euk3) to be able to successfully run this request. Otherwise they will receive a status code `403` error. These are the applicable resources for this endpoint:
+  
+  | **Product** | **Category** | **Resource** |
+  | --------------- | ----------------- | ----------------- |
+  | Dynamic Storage | Dynamic storage generic resources | **Master Data administrator** |
+  | Dynamic Storage | Data entity | **List data entity** |
+  
+  There are no applicable [predefined roles](https://help.vtex.com/en/tutorial/predefined-roles--jGDurZKJHvHJS13LnO7Dy) for this resource list. You must [create a custom role](https://help.vtex.com/en/tutorial/roles--7HKK5Uau2H6wxE1rH5oRbc#creating-a-role) and add at least one of the resources above in order to use this endpoint.To learn more about machine authentication at VTEX, see [Authentication overview](https://developers.vtex.com/docs/guides/authentication).
+  
+  >❗ To prevent integrations from having excessive permissions, consider the [best practices for managing app keys](https://help.vtex.com/en/tutorial/best-practices-application-keys--7b6nD1VMHa49aI5brlOvJm) when assigning License Manager roles to integrations.
+}

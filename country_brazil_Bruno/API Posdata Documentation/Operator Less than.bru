@@ -1,0 +1,20 @@
+meta {
+  name: Operator Less than
+  type: http
+  seq: 5
+}
+
+get {
+  url: https://api-eu.preprod.subsidia.org/posdata_api/poslogs?transaction.sequenceNumber.lt=633758288
+  body: none
+  auth: none
+}
+
+params:query {
+  transaction.sequenceNumber.lt: 633758288
+}
+
+headers {
+  Authorization: Bearer your-fed-token
+  x-api-key: your-x-api-key
+}

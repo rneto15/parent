@@ -1,0 +1,101 @@
+meta {
+  name: Criar Pedido - Metodo de pagamente e 1 produto
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/orders
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "id": null,
+    "createdAt": "2017-02-24T09:40:03Z",
+    "status": "PENDING",
+    "marketPlaceStatus": "PENDING",
+    "marketPlace": "ECOMMERCE",
+    "marketPlaceId": "6345747332",
+    "marketPlaceShipmentStatus": "PENDING",
+    "transmissionStatus": "OK",
+    "discount": 0,
+    "freight": 0,
+    "gross": 14.22,
+    "total": 14.22,
+    "shipping": {
+      "city": "Maringa",
+      "state": "PR",
+      "country": "BR",
+      "street": "Avenida Horacio Raccanello Filho",
+      "neighborhood": "Centro",
+      "number": "55",
+      "address": "Avenida Horacio Raccanello Filho",
+      "zipCode": "87020035"
+    },
+    "buyer": {
+      "id": "123498",
+      "name": "USER TESTE",
+      "email": "USER@tes.com.br",
+      "document": "88411641236",
+      "documentType": "CPF",
+      "phone": "4498765432"
+    },
+    "payments": [
+      {
+        "method": "CREDIT_CARD",
+        "value": 14.22,
+        "installments": 2,
+        "marketplaceId": "1",
+        "paymentMethodNormalized": "CARTÃO DE CRÉDITO",
+        "paymentDetailNormalized": "CARTÃO DE CRÉDITO"
+      }
+    ],
+    "items": [
+      {
+        "sku": {
+          "partnerId": ""
+        },
+        "amount": 1,
+        "unit": 14.22,
+        "price": 14.22,
+        "discount": 0,
+        "gross": 0,
+        "total": 14.22,
+        "shippings":[ 
+          {
+            "id": 1,
+            "shippingtype": "Correios PAC",
+            "shippingCarrierNormalized": "CORREIOS",
+            "shippingCarrierTypeNormalized": "PAC"
+          }
+          
+        ] 
+      }
+    ]
+  }
+}
+
+script:post-response {
+  test("Status code is 200", function() {
+    expect(Boolean(responseCode.code === 201)).to.be.true;
+  });
+  
+  // pm.setGlobalVariable("market_id", "{{$randomInt}}"+"{{$randomInt}}");
+}
+
+docs {
+  Método de pagemento:
+  CREDIT_CARD
+  
+}

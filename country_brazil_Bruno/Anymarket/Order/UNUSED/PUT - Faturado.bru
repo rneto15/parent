@@ -1,0 +1,34 @@
+meta {
+  name: PUT - Faturado
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/orders/{{ID_ORDER}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "order_id": "ID_PEDIDO",
+    "status": "INVOICED",
+    "invoice": {
+      "series": "3",
+      "number": "431",
+      "accessKey": "00000000000000000000000000000000000000000000",
+      "installments": 7,
+      "date": "2016-03-09T19:01:58Z"
+    }
+  }
+}

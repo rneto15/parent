@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Precode",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

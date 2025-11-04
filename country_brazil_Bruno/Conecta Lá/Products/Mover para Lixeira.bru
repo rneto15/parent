@@ -1,0 +1,25 @@
+meta {
+  name: Mover para Lixeira
+  type: http
+  seq: 10
+}
+
+delete {
+  url: http://teste.conectala.com.br/app/Api/V1/Products/trash/{{SKU}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+docs {
+  Move um produto para a lixeira. A partir deste momento, o produto fica indisponível no sistema.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Produto(s) movido(s) para a lixeira." como valor.
+}

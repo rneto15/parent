@@ -1,0 +1,27 @@
+meta {
+  name: PUT - Concluido
+  type: http
+  seq: 10
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/orders/{{ID_ORDER}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "order_id": "ID_PEDIDO",
+    "status": "CONCLUDED"
+  }
+}

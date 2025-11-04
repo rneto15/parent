@@ -1,0 +1,54 @@
+meta {
+  name: Consultar Fila de Pedidos com Filtros
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/Orders?new_order={{new_order}}&status={{status}}
+  body: none
+  auth: none
+}
+
+params:query {
+  new_order: {{new_order}}
+  status: {{status}}
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: email@email.com
+  x-api-key: CHAVE
+  x-store-key: 00
+}
+
+docs {
+  As consultas à fila de pedidos podem ser feitas com a utilização de filtros. Os filtros possíveis são os seguintes:
+  
+  <h4>Filtros</h4>
+  <table>
+  <tr><td><b>Atributo</b></td><td><b>Descrição</b></td><td><b>Tipo</b></td></tr>
+  <tr><td>page</td><td>Número da página de resultados a ser consultada.</td><td>Integer</td></tr>
+  <tr><td>per_page</td><td>Quantidade de registros por página (<i>Padrão: 100 registros</i>).</td><td>Integer</td></tr>
+  <tr><td>status</td><td>Código do status do pedido. Podendo ser mais do que um. Ex.: 3, 5, 6.</td><td>String</td></tr>
+  <tr><td>new_order</td><td>Novo pedido.</td><td>Boolean</td></tr>
+  <tr><td>only_new_paid</td><td>Todos os filtros serão ignorados (exceto os de paginação) e serão retornados pedidos novos (<i>new_order=true</i>) já pagos (<i>status=3</i>).</td><td>Boolean</td></tr>
+  </table>
+  
+  Em caso de sucesso, um resultado com seis chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "registers_count", informa a quantidade de registros da página atual. A terceira chave, intitulada "pages_count", informa a quantidade total de páginas de registros. A quarta chave, intitulada "page", informa o número da página atual. A quinta chave, intitulada "total_registers", informa a quantidade total de registros.
+  
+  A sexta chave, intitulada "result", tem os seguintes valores possíveis:
+  
+  <table>
+  <tr><td>order_code</td><td>Código do pedido.</td><td>Integer</td></tr>
+  <tr><td>status</td><td>Status do pedido, esse campo encapsula o código (code) do status e sua descrição (label).
+  <ul>
+  <li>Code: é o campo que recebe o código do status do pedido.</li>
+  <li>Label: é o campo que recebe o nome do status do pedido.</li>
+  </ul>
+  </td><td>Array</td></tr>
+  <tr><td>updated_at</td><td>Data em que o pedido foi atualizado.</td><td>String</td></tr>
+  <tr><td>new_order</td><td>Define se é um pedido novo ou não.</td><td>Boolean</td></tr>
+  </table>
+}

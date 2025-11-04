@@ -1,0 +1,36 @@
+meta {
+  name: Consultar Usuários
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/Users
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-provider-key}}
+}
+
+docs {
+  <h3>Endpoint destinado para requisições realizadas por fornecedores.</h3>
+  
+  Consulta todos os usuários cadastrados por um fornecedor.
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com as informações das lojas cadastradas.
+  
+  **Filtros:**
+  
+  *   ?user_id={id}
+  *   ?user_name={user_name}
+  *   ?user_email={user_email}
+  *   ?company_name={company_name}
+  *   ?store_name={store_name}
+  *   ?group_name={group_name}
+}

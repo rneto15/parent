@@ -1,0 +1,83 @@
+meta {
+  name: Transmitir
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/skus/{{id_sku}}/marketplaces/{{id_publicacao}}/send
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: 237313L259025280E1593613969384O1.I
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "id": 300000,
+    "createdAt": "2017-01-27T14:08:03Z",
+    "status": "PENDING",
+    "marketPlaceStatus": "PENDING",
+    "marketPlace": "ECOMMERCE",
+    "marketPlaceId": "6325484711",
+    "marketPlaceShipmentStatus": "PENDING",
+    "transmissionStatus": "OK",
+    "discount": 0,
+    "freight": 0,
+    "gross": 80,
+    "total": 80,
+    "shipping": {
+      "city": "Maringa",
+      "state": "PR",
+      "country": "BR",
+      "street": "Avenida Horacio Raccanello Filho",
+      "neighborhood": "Centro",
+      "number": "55",
+      "address": "Avenida Horacio Raccanello Filho",
+      "zipCode": "87020035"
+    },
+    "buyer": {
+      "id": "123498",
+      "name": "USER TESTE",
+      "email": "USER@tes.com.br",
+      "document": "31882553144",
+      "documentType": "CPF",
+      "phone": "4498765432"
+    },
+    "payments": [
+      {
+        "method": "Dinheiro",
+        "status": "Pago",
+        "value": 0
+      }
+    ],
+    "items": [
+      {
+        "sku": {
+          "partnerId": "fresco123"
+        },
+        "amount": 1,
+        "unit": 80,
+        "price": 80,
+        "discount": 0,
+        "gross": 0,
+        "total": 80
+      }
+    ]
+  }
+}
+
+script:post-response {
+  test("Status code is 200", function() {
+    expect(Boolean(responseCode.code === 201)).to.be.true;
+  });
+  
+  // pm.setGlobalVariable("market_id", "{{$randomInt}}"+"{{$randomInt}}");
+}

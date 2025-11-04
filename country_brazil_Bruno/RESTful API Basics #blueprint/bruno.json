@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "RESTful API Basics #blueprint",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

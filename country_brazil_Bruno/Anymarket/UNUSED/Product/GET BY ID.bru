@@ -1,0 +1,20 @@
+meta {
+  name: GET BY ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://sandbox-api.anymarket.com.br/v2/products/{{ID_PRODUCT}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

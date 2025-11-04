@@ -1,0 +1,39 @@
+meta {
+  name: Criar Empresa
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://teste.conectala.com.br/app/Api/V1/Companies
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-provider-key}}
+}
+
+docs {
+  <h3>Endpoint destinado para requisições realizadas por fornecedores.</h3>
+  
+  Cadastra uma empresa para um fornecedor.
+  
+  Campos que devem ser preenchidos para cadastro de empresa:
+  
+  <table><tbody><tr><td><b>Atributo</b></td><td><b>Descrição</b></td><td><b>Tipo</b></td></tr><tr><td>company.company_name</td><td>Nome da empresa.</td><td>String</td></tr><tr><td>company.legal_personality</td><td>Aceira somente "pj" ou "pj", sendo que "PJ" significa uma pessoa jurídica e "pf" uma pessoa física.</td><td>String</td></tr><tr><td>company.associate_type</td><td>Tipo de associado, sendo:<br>- 0 para Matriz (valor padrão);<br>- 1 para Agência;<br>- 2 para Partner;<br>- 3 para Afiliado;<br>- 4 para Autônomo;<br>- 5 para Indicado;</td><td>Int</td></tr><tr><td>company.service_charge</td><td>Comissão sobre os pedidos da empresa. Não utilizado quando associate_type - 0 ou Matriz</td><td>float</td></tr><tr><td>company.email</td><td>Email principal de contato</td><td>String</td></tr><tr><td>company.phone1</td><td>Telefone de contato da empresa</td><td>float</td></tr><tr><td>company.phone2</td><td>Telefone de contato da empresa</td><td>String</td></tr><tr><td>company.pj.corporate_name</td><td>Razão social</td><td>String</td></tr><tr><td>company.pj.cnpj</td><td>CNPJ</td><td>String</td></tr><tr><td>company.pj.state_reg</td><td>Inscrição estadual</td><td>String</td></tr><tr><td>company.pj.munic_reg</td><td>Inscrição estadual</td><td>Inteiro (Opcional)</td></tr><tr><td>company.pj.manager</td><td>Nome do responsável pela empresa</td><td>String</td></tr><tr><td>company.address.address</td><td>Rua da empresa</td><td>String</td></tr><tr><td>company.address.number</td><td>Número do endereço de coleta.</td><td>String</td></tr><tr><td>company.address.complement</td><td>Complemento.</td><td>String</td></tr><tr><td>company.address.neighborhood</td><td>Bairro.</td><td>String</td></tr><tr><td>company.address.city</td><td>Cidade.</td><td>String</td></tr><tr><td>company.address.state</td><td>Sigla do estado.</td><td>String</td></tr><tr><td>company.address.country</td><td>Sigla do país, sendo:<br>- "BR" – Brasil;<br>- "SP" – Espanha.</td><td>String</td></tr><tr><td>company.address.zipcode</td><td>CEP.</td><td>String</td></tr><tr><td>company.bank_data.bank</td><td>Nome do Banco, conforme listagem ao final da documentação</td><td>String</td></tr><tr><td>company.bank_data.agency</td><td>Agência.</td><td>String</td></tr><tr><td>company.bank_data.account_type</td><td>Tipo da conta: "Conta Corrente" ou "Conta Poupança"</td><td>String</td></tr><tr><td>company.bank_data.account</td><td>Número da conta bancária.</td><td>String</td></tr></tbody></table>
+  
+  Listagem de bancos disponíveis para cadastro:
+  
+  <table><tbody><tr><td>Nome do Banco</td><td>String</td></tr><tr><td>Itaú</td><td>"Itaú"</td></tr><tr><td>Bradesco</td><td>"Bradesco"</td></tr><tr><td>Caixa Econômica Federal</td><td>"Caixa Econômica"</td></tr><tr><td>Banco do Brasil</td><td>"Banco do Brasil"</td></tr><tr><td>Santander</td><td>"Santander"</td></tr><tr><td>Banrisul</td><td>"Banrisul"</td></tr><tr><td>Sicredi</td><td>"Sicredi"</td></tr><tr><td>Sicoob</td><td>"Sicoob"</td></tr><tr><td>Banco Inter</td><td>"Inter"</td></tr><tr><td>Banco BRB</td><td>"BRB"</td></tr><tr><td>Via Credi</td><td>"Via Credi"</td></tr><tr><td>Banco Neon</td><td>"Neon"</td></tr><tr><td>Nubank</td><td>"Nubank"</td></tr><tr><td>Pag Seguro</td><td>"Pagseguro"</td></tr><tr><td>Banco Original</td><td>"Banco Original"</td></tr><tr><td>Banco Safra</td><td>"Safra"</td></tr><tr><td>Banco Modal</td><td>"Modal"</td></tr><tr><td>Banestes</td><td>"Banestes"</td></tr><tr><td>Unicred</td><td>"Unicred"</td></tr><tr><td>Banco Stone</td><td>"Stone"</td></tr><tr><td>Neon/Votorantim</td><td>"Neon/Votorantim"</td></tr><tr><td>Modal</td><td>"Modal"</td></tr><tr><td>Money Plus</td><td>"Money Plus"</td></tr><tr><td>Mercantil do Brasil</td><td>"Mercantil do Brasil"</td></tr><tr><td>JP Morgan</td><td>"JP Morgan"</td></tr><tr><td>Gerencianet Pagamentos do Brasil</td><td>"Gerencianet Pagamentos do Brasil"</td></tr><tr><td>Banco C6</td><td>"Banco C6"</td></tr><tr><td>BS2</td><td>"BS2"</td></tr><tr><td>Banco Topázio</td><td>"Banco Topazio"</td></tr><tr><td>Uniprime</td><td>"Uniprime"</td></tr><tr><td>Banco Stone</td><td>"Banco Stone"</td></tr><tr><td>Rendimentto</td><td>"Rendimentto"</td></tr><tr><td>Banco Daycoval</td><td>"Banco Daycoval"</td></tr><tr><td>Banco do Nordeste</td><td>"Banco do Nordeste"</td></tr><tr><td>Citibank</td><td>"Citibank"</td></tr></tbody></table>
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem "true" como valor.
+  
+  A segunda chave, intitulada "result", fornece informações sobre a empresa cadastrada, com as seguintes chaves:
+  
+  <table><tbody><tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr><tr><td>id</td><td>Id da empresa.</td><td>Integer</td></tr><tr><td>message</td><td>Resultado da ação.</td><td>String</td></tr></tbody></table>
+}

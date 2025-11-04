@@ -1,0 +1,23 @@
+meta {
+  name: Pagination : full example page 2
+  type: http
+  seq: 20
+}
+
+get {
+  url: https://api-eu.preprod.subsidia.org/posdata_api/poslogs?sortBy=sequenceNumber&sortOrder=desc&from=5&size=5
+  body: none
+  auth: none
+}
+
+params:query {
+  sortBy: sequenceNumber
+  sortOrder: desc
+  from: 5
+  size: 5
+}
+
+headers {
+  Authorization: Bearer your-fed-token
+  x-api-key: your-x-api-key
+}

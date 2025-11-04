@@ -1,0 +1,14 @@
+meta {
+  name: Documents
+  seq: 2
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}

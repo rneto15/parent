@@ -1,0 +1,30 @@
+meta {
+  name: New Request
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://idpdecathlon.oxylane.com/idp/userinfo.openid
+  body: none
+  auth: oauth2
+}
+
+auth:oauth2 {
+  grant_type: authorization_code
+  callback_url: http://br-jenkins-data.dktapp.cloud/securityRealm/finishLogin
+  authorization_url: https://idpdecathlon.oxylane.com/as/authorization.oauth2
+  access_token_url: https://idpdecathlon.oxylane.com/as/token.oauth2
+  refresh_token_url: 
+  client_id: C80408781bdd5d4dc4c822f2a2f99904c11f4394b
+  client_secret: S9m7Wvr28Gpdrv8xfx7cM94hTY4ay93zVayIhiKM8pFprphaMzEQDoAFDsTipLde
+  scope: openid profile support_groups
+  state: 
+  pkce: true
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}

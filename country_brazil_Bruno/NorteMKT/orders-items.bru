@@ -1,0 +1,26 @@
+meta {
+  name: orders/items
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{base_url}}/rest/default/V1/orders/items/1?1&
+  body: none
+  auth: bearer
+}
+
+params:query {
+  1: null
+  : null
+}
+
+auth:bearer {
+  token: b3yk94zuoyq0cyx2eoix4nq0ee6yj376
+}
+
+script:post-response {
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+}

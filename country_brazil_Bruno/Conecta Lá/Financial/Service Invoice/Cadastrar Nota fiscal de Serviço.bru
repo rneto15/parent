@@ -1,0 +1,49 @@
+meta {
+  name: Cadastrar Nota fiscal de Serviço
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Financial/service-invoice
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-provider-key}}
+  x-store-seller-key: {{x-store-seller-key}}
+}
+
+body:json {
+  {
+      "nfse": [
+          {
+              "seller": 3,
+              "month" : "01",
+              "year" : "2022",
+              "day" : "13",
+              "url" : "https://urltesteloja4.notafiscalservico.com"
+          },
+          {
+              "seller": "3",
+              "month" : "01",
+              "year" : "2022",
+              "day" : "13",
+              "url" : "https://urltesteloja5.notafiscalservico.com"
+          }
+      ]
+  }
+}
+
+docs {
+  Para cadastrar as notas fiscais de serviço para as lojas, todos os seguintes parâmetros precisam ser preenchidos:
+  
+  <table><tbody><tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr><tr><td>seller</td><td>ID do seller</td><td>integer</td></tr><tr><td>month</td><td>Mês da Conciliação (No formato de 2 dígitos).</td><td>string</td></tr><tr><td>year</td><td>Ano da Conciliação (No formato de 4 dígitos).</td><td>string</td></tr><tr><td>day</td><td>Dia da Conciliação (No formato de 2 dígitos).</td><td>string</td></tr><tr><td>url</td><td>URL da nota fiscal (com http)</td><td>string</td></tr></tbody></table>
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true".
+}

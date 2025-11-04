@@ -1,0 +1,28 @@
+meta {
+  name: scroll + gera token
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://decathlonstore.myvtex.com/api/dataentities/CL/scroll?_fields=id%2Ccheckouttag%2Crclastcart%2Crclastcartvalue%2Crclastsession%2ChomePhone%2Cphone%2Cemail%2CfirstName%2ClastName%2CbirthDate%2Cgender%2Crclastsessiondate%2Cdocument%2CcreatedIn%2CupdatedIn&_where=(checkouttag%3C%3EFinalizado%20AND%20checkouttag%20%20is%20not%20null%20AND%20rclastsessiondate%20between%202025-06-20%20AND%202025-06-23)
+  body: none
+  auth: apikey
+}
+
+params:query {
+  _fields: id%2Ccheckouttag%2Crclastcart%2Crclastcartvalue%2Crclastsession%2ChomePhone%2Cphone%2Cemail%2CfirstName%2ClastName%2CbirthDate%2Cgender%2Crclastsessiondate%2Cdocument%2CcreatedIn%2CupdatedIn
+  _where: (checkouttag%3C%3EFinalizado%20AND%20checkouttag%20%20is%20not%20null%20AND%20rclastsessiondate%20between%202025-06-20%20AND%202025-06-23)
+}
+
+headers {
+  X-VTEX-API-AppKey: vtexappkey-decathlonpro-XCXWGJ
+  X-VTEX-API-AppToken: DZACYRKBZPGIVIAMUUJZFQGNIBILHQBHLMXORSBPHMNGABQUQEHKPPGGTDEPSWRMFCTXIHPGIPCOSURFGWRCSBOOYOUXVEHWAWBSSIUPLZCFCIZFATAYJKVHZJANYMYR
+  Accept: application/vnd.vtex.ds.v10+json
+}
+
+auth:apikey {
+  key: X-VTEX-API-AppKey
+  value: {{apiKey}}
+  placement: header
+}

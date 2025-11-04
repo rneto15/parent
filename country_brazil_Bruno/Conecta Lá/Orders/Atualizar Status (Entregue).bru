@@ -1,0 +1,35 @@
+meta {
+  name: Atualizar Status (Entregue)
+  type: http
+  seq: 9
+}
+
+put {
+  url: http://teste.conectala.com.br/app/Api/V1/Orders/{{Order}}/delivered
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "shipment": {
+          "delivered_date": "2020-01-27 16:19:52"
+      }
+  }
+}
+
+docs {
+  Atualiza o status do pedido para "<b>Entregue</b>".
+  
+  O pedido <b>deve</b> ter o status <b>45</b> (Em transporte) para entregar.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Order successfully updated" como valor.
+}

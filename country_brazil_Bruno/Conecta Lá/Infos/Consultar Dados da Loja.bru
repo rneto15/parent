@@ -1,0 +1,36 @@
+meta {
+  name: Consultar Dados da Loja
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://decathlonmarketplace.conectala.com.br/app/Api/V1/Infos
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+docs {
+  Consulta informações da loja autenticada.
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com as informações da loja autenticada.
+  
+  Os campos retornados da loja são os seguintes:
+  
+  <table>
+  <tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  <tr><td>code</td><td>Código do resultado da requisição.</td><td>Integer</td></tr>
+  <tr><td>fantasy_name</td><td>Nome fantasia da loja.</td><td>String</td></tr>
+  <tr><td>company_name</td><td>Nome da loja.</td><td>String</td></tr>
+  <tr><td>identification</td><td>Código de identificação da loja.</td><td>String</td></tr>
+  <tr><td>create_at</td><td>Data de criação da loja no sistema.</td><td>Datetime</td></tr>
+  </table>
+}

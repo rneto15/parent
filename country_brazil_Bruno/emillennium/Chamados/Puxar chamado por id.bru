@@ -1,0 +1,23 @@
+meta {
+  name: Puxar chamado por id
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{endpoint}}/api/millenium_eco!decathlon/chamados/lista?$dateformat=iso&$format=json&protocolo=TF-0002856426
+  body: none
+  auth: basic
+}
+
+params:query {
+  $dateformat: iso
+  $format: json
+  protocolo: TF-0002856426
+  ~chamado: 524886
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

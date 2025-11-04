@@ -1,0 +1,26 @@
+meta {
+  name: PUT
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/products/{{ID_PRODUCT}}/skus/{{ID_SKU}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+   "price": 152
+  }
+}

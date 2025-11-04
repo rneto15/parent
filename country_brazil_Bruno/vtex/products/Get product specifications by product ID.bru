@@ -1,0 +1,16 @@
+meta {
+  name: Get product specifications by product ID
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/catalog/pvt/product/101379
+  body: none
+  auth: none
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

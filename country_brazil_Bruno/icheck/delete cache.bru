@@ -1,0 +1,38 @@
+meta {
+  name: delete cache
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{endpoint}}/transactional/internal/cache
+  body: none
+  auth: oauth2
+}
+
+params:query {
+  ~firstElement: 0
+  ~numberElement: 100
+  ~applicationName: TRADEBACK
+}
+
+headers {
+  x-api-key: {{x-api-key}}
+  ~accept: application/json
+  ~Content-Type: application/json
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: {{endpoint_fedid}}
+  refresh_token_url: 
+  client_id: {{client_id_fedid}}
+  client_secret: {{client_secret_fedid}}
+  scope: 
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}

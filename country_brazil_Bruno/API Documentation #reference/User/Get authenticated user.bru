@@ -1,0 +1,25 @@
+meta {
+  name: Get authenticated user
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.getpostman.com/me?foo=bar
+  body: none
+  auth: apikey
+}
+
+params:query {
+  foo: bar
+}
+
+auth:apikey {
+  key: X-API-Key
+  value: {{token}}
+  placement: header
+}
+
+docs {
+  Gets information about the authenticated user.
+}

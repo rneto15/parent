@@ -1,0 +1,20 @@
+meta {
+  name: Request TEST
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:5000/teste_v0
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer sccp1910
+}
+
+body:json {
+  {"message": "Teste de salvamento"}
+}

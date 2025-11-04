@@ -1,0 +1,28 @@
+meta {
+  name: orders/1
+  type: http
+  seq: 9
+}
+
+get {
+  url: https://magento.staging.runningland.com.br/rest/default/V1/orders/22
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: b3yk94zuoyq0cyx2eoix4nq0ee6yj376
+}
+
+body:json {
+  {
+  	"name": "Add your name in the body"
+  }
+}
+
+script:post-response {
+  test("Successful POST request", function () {
+      expect(res.getStatus()).to.be.oneOf([200, 201]);
+  });
+  
+}

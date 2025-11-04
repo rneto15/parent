@@ -1,0 +1,24 @@
+meta {
+  name: Get pedido por trans_id
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{endpoint}}/api/millenium_eco_cdecathlon/pedido_venda/listapedidos3_dash?$dateformat=ISO&$top=15&$format=json&trans_id={{trans_id}}
+  body: none
+  auth: basic
+}
+
+params:query {
+  $dateformat: ISO
+  $top: 15
+  $format: json
+  trans_id: {{trans_id}}
+  ~cod_pedidov: {{cod_pedidov}}
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

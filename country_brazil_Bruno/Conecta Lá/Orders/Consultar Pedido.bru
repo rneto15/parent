@@ -1,0 +1,32 @@
+meta {
+  name: Consultar Pedido
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://decathlonmarketplace.conectala.com.br/app/Api/V1/Orders/87034
+  body: none
+  auth: none
+}
+
+params:query {
+  ~: null
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-api-key: {{x-api-key}}
+  x-email: {{x-email}}
+  x-provider-key: {{x-provider-key}}
+  ~x-user-email: {{x-user-email}}
+  ~x-store-key: {{x-store-key}}
+  ~x-store-seller-key: 115
+}
+
+docs {
+  Consulta algum pedido através do seu número.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "result", mostra as informações sobre o pedido.
+}

@@ -1,0 +1,29 @@
+meta {
+  name: Lista faturamento por trans_id
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{endpoint}}/api/millenium_eco_Cdecathlon/pedido_venda/listafaturamentos?$format=json&trans_id={{trans_id}}&$dateformat=iso
+  body: none
+  auth: basic
+}
+
+params:query {
+  $format: json
+  trans_id: {{trans_id}}
+  $dateformat: iso
+  ~$top: 10
+  ~cod_pedidov: VTX-7073933-811
+}
+
+headers {
+  Dkt_api: DKTLAB
+  ~: 
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

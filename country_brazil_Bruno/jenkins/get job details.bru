@@ -1,0 +1,21 @@
+meta {
+  name: get job details
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseurl}}/job/{{job}}/22/api/json?pretty=true
+  body: none
+  auth: basic
+}
+
+params:query {
+  pretty: true
+  ~tree: actions[causes[*],parameters[*]],description,duration,estimatedDuration,id,result,url,timestamp
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{token}}
+}

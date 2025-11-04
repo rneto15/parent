@@ -1,0 +1,20 @@
+meta {
+  name: Test
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://decathlonqa.millenniumhosting.com.br
+  body: none
+  auth: basic
+}
+
+headers {
+  Dkt_api: "DKTLAB"
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

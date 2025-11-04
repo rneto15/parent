@@ -1,0 +1,25 @@
+meta {
+  name: Get all collections
+  type: http
+  seq: 5
+}
+
+get {
+  url: https://api.getpostman.com/collections
+  body: none
+  auth: apikey
+}
+
+params:query {
+  ~workspace: {{workspaceId}}
+}
+
+auth:apikey {
+  key: X-API-Key
+  value: {{token}}
+  placement: header
+}
+
+docs {
+  Gets all of your [collections](https://www.getpostman.com/docs/collections). The response includes all of your subscribed collections.
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Forças Feeds
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://10.0.9.239:8080/internal/orders/feeds
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {"oi":"24325425.","id":"4921"} 
+}

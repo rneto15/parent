@@ -1,0 +1,44 @@
+meta {
+  name: Consultar Rastreamento
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://teste.conectala.com.br/app/Api/V1/Tracking/{{Order}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+docs {
+  Os dados de rastreamento poderão ser visualizados somente após a geração da etiqueta dentro da plataforma Conecta Lá.
+  
+  Caso o rastreio ainda não exista, será apresentada a mensagem "<i>No results were found</i>".
+  
+  Em caso de sucesso, a chave "success" é retornada com valor "true" e a chave "result" é retornada com as informações do rastreamento do pedido:
+  
+  <table>
+  <tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr>
+  <tr><td>order_code</td><td>Código do pedido na Conecta Lá.</td><td>Integer</td></tr>
+  <tr><td>date_cross_docking</td><td>Data para expedir o pedido.</td><td>String</td></tr>
+  <tr><td>ship_company</td><td>Transportadora.</td><td>String</td></tr>
+  <tr><td>ship_company_cnpj</td><td>CNPJ da transportadora.</td><td>String</td></tr>
+  <tr><td>ship_service</td><td>Serviço de envio.</td><td>String</td></tr>
+  <tr><td>ship_value</td><td>Valor do frete contratado.</td><td>Float</td></tr>
+  <tr><td>expected_delivery_date</td><td>Data prevista para entrega.</td><td>String</td></tr>
+  <tr><td>ship_address</td><td>Dados do destinatário.</td><td>Array</td></tr>
+  <tr><td>tracking</td><td>Dados do rastreio, como:
+  • Links para etiqueta A4, Térmica e ZPL;
+  • Códigos de rastreio e link para PLP;
+  • Data em que a etiqueta foi gerada.</td><td>Array</td></tr>
+  <tr><td>tracking_history</td><td>Histórico de ocorrências do frete.</td><td>Array</td></tr>
+  </table>
+}

@@ -1,0 +1,27 @@
+meta {
+  name: decathlon login
+  seq: 1
+}
+
+auth {
+  mode: oauth2
+}
+
+auth:oauth2 {
+  grant_type: authorization_code
+  callback_url: decathlon://callback
+  authorization_url: https://api-global.preprod.decathlon.net/connect/oauth/authorize
+  access_token_url: https://api-global.preprod.decathlon.net/connect/oauth/token
+  refresh_token_url: 
+  client_id: 8001782e-05c1-4e4b-bd1f-2dbecce6f5d6
+  client_secret: 9br7tRr5MYaZnj1mncG8Nanx1Ax7lMtq7iu47H1bQVgJA3d1d9gXJJr97IFBi7gweoFsY4TEoBiRnkPfvPhEOrwpXzEODuNv3mEza2FSe3b4LC39RK1t1GMMaqo15elU
+  scope: 
+  state: 
+  pkce: true
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}

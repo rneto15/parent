@@ -1,0 +1,35 @@
+meta {
+  name: Atualizar Estoque
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://teste.conectala.com.br/app/Api/V1/Products/{{SKU}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "product": {
+      	"qty": 15
+  	}
+  }
+}
+
+docs {
+  A atualização do estoque e do preço é similar a uma atualização convencional: devemos informar no endpoint qual SKU queremos atualizar e, no Body da requisição, o campo com a nova quantidade em estoque (qty). É possível atualizar o preço do produto na mesma requisição.
+  
+  Caso o produto a ser atualizado tenha variação, é necessário consultar a documentação relativa a Variações.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Produto atualizado com sucesso" como valor.
+}

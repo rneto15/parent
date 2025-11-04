@@ -1,0 +1,16 @@
+meta {
+  name: Cancel order
+  type: http
+  seq: 2
+}
+
+post {
+  url: decathlonstoresqa.myvtex.com/api/oms/pvt/orders/1219830852789-01/cancel
+  body: none
+  auth: none
+}
+
+headers {
+  X-VTEX-API-AppKey:  {{appKey}}
+  X-VTEX-API-AppToken:  {{appToken}}
+}

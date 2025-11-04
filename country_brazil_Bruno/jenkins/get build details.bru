@@ -1,0 +1,21 @@
+meta {
+  name: get build details
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseurl}}/job/{{job}}/api/json?pretty=true&tree=name,description,url,buildable,builds[url,number],concurrentBuild
+  body: none
+  auth: basic
+}
+
+params:query {
+  pretty: true
+  tree: name,description,url,buildable,builds[url,number],concurrentBuild
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{token}}
+}

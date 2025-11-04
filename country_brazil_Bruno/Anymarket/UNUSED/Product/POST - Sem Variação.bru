@@ -1,0 +1,112 @@
+meta {
+  name: POST - Sem Variação
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/products
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "id": null,
+    "title": "Produto com Fotos Loucas",
+    "description": "Produto com fotos Loucas",
+    "nbm": {
+      "id": "0"
+    },
+    "brand": {
+      "id": "1828",
+      "name": "Danmarca"
+    },
+    "origin": {
+      "id": "0"
+    },
+    "category": {
+      "id": "36544"
+    },
+    "model": "SM-804",
+    "warrantyText": "90 dias",
+    "warrantyTime": "3",
+    "weight": 0.3,
+    "height": 8,
+    "width": 12,
+    "length": 17,
+    "images": [{
+      "main": true,
+      "url": "http://66.media.tumblr.com/tumblr_lcpn2mv6yU1qf0qtao1_1280.jpg"
+    }, {
+      "main": true,
+      "url": "http://imguol.com/c/entretenimento/2014/09/03/2007---pedro-cardoso-em-cena-de-a-grande-familia-1409762964928_956x500.jpg"
+    }, {
+      "main": true,
+      "url": "http://imguol.com/blogs/160/files/2016/05/cauby-peixoto.jpg"
+    }],
+    "priceFactor": 1,
+    "calculatedPrice": false,
+    "characteristics": [{
+      "index": 0,
+      "name": "Cor",
+      "value": "Prata"
+    }, {
+      "index": 1,
+      "name": "Marca",
+      "value": "Besi"
+    }, {
+      "index": 2,
+      "name": "Voltagem",
+      "value": "-"
+    }, {
+      "index": 3,
+      "name": "Compatibilidade",
+      "value": "Ideal para c\u00e2meras de pequeno porte com peso at\u00e9 900 gramas"
+    }, {
+      "index": 4,
+      "name": "Indica\u00e7\u00e3o de Uso",
+      "value": "C\u00e2meras fotogr\u00e1ficas digitais, anal\u00f3gicas, e web cam"
+    }, {
+      "index": 5,
+      "name": "Material\/Composi\u00e7\u00e3o",
+      "value": "Metal"
+    }, {
+      "index": 6,
+      "name": "Medida Aproximada",
+      "value": "Max 20 cent\u00edmetros de altura;  Dimens\u00e3o fechado: 150 mil\u00edmetros de altura; Extens\u00e3o aberto: 210 mil\u00edmetros de altura"
+    }, {
+      "index": 7,
+      "name": "Peso Aproximado",
+      "value": "33 gramas"
+    }, {
+      "index": 8,
+      "name": "Itens Inclusos",
+      "value": "1x  Mini trip\u00e9"
+    }],
+    "skus": [{
+      "price": 19.99,
+      "amount": 58,
+      "ean": null,
+      "partnerId": "pFotosLoucas",
+      "title": "Mini Trip\u00e9 Universal Retr\u00e1til SM-804 Para C\u00e2mera Digital ",
+      "idProduct": null,
+      "internalIdProduct": "2573"
+    }]
+  }
+}
+
+script:post-response {
+  test("Status code is 200", function() {
+    expect(Boolean(responseCode.code === 200)).to.be.true;
+  });
+}

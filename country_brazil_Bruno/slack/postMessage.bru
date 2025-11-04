@@ -1,0 +1,21 @@
+meta {
+  name: postMessage
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://slack.com/api/chat.postMessage
+  body: formUrlEncoded
+  auth: none
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  Authorization: Bearer xoxb-232235139447-5507628010391-V2P18DivvYMmMEuFBZwkNCIl
+}
+
+body:form-urlencoded {
+  channel: #cs-data-br-talend-log
+  text: :wave: Hi from a bot written in Java!
+}

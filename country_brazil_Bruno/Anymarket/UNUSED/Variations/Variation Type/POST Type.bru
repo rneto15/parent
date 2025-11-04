@@ -1,0 +1,38 @@
+meta {
+  name: POST Type
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://sandbox-api.anymarket.com.br/v2/variations
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  gumgaToken: {{gumgaToken}}
+  gumgaOI: {{gumgaOI}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  {
+    "name": "Variation (13)",
+    "visualVariation": "false",
+    "values": [
+      {
+        "description": "Azul",
+        "partnerId": "X-AZUL"
+      },
+      {
+        "description": "Verde",
+        "partnerId": "X-VERDE"
+      }
+    ]
+  }
+}

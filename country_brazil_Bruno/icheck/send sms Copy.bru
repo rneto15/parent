@@ -1,0 +1,51 @@
+meta {
+  name: send sms Copy
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{endpoint}}/transactional/v1/communication/
+  body: json
+  auth: oauth2
+}
+
+headers {
+  accept: application/json
+  Content-Type: application/json
+  x-api-key: {{x-api-key}}
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: {{endpoint_fedid}}
+  refresh_token_url: 
+  client_id: {{client_id_fedid}}
+  client_secret: {{client_secret_fedid}}
+  scope: 
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}
+
+body:json {
+  {
+      "contactId": "68850afb-0b7d-4d1d-b3ae-60dbb6b9cc31",
+      "countryCode": "BR",
+      "languageCode": "pt",
+      "communicationChannel": "sms",
+      "eventCode": "CASHBACK",
+      "communicationValue": {
+          "mobileNumber": {
+              "value": "5511998362745",
+              "countryCode": "BR"
+          }
+      },
+      "smsMessage": {
+          "text": "DECATHLON: Parabens voce ganhou R$8,10 de cashback para sua proxima compra em nosso site, app ou loja fisica. Desconto limitado ate 20% OFF https://bit.ly/3Ez2KNY"
+      }
+  }
+}

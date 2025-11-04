@@ -1,0 +1,38 @@
+meta {
+  name: Consultar Lista de Pedidos
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://decathlonmarketplace.conectala.com.br/app/Api/V1/Orders/list
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-api-key: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6NywiZW1haWwiOiJUaWFnby56YW1iZXR0YUBkZWNhdGhsb24uY29tIn0.eIHTxpHzSvVMa7BHpfmx6XfXTifjVjGNBArDvEDpzCs
+  x-store-seller-key: 1
+  x-email: Tiago.zambetta@decathlon.com
+  x-provider-key: 7
+  ~x-user-email: Tiago.zambetta@decathlon.com
+  ~x-store-key: 1
+}
+
+docs {
+  Consulta da listagem de pedidos.
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "result", tem os seguintes valores possíveis:
+  
+  <table>
+  <tr><td>error</td><td>Informa se foi encontrado algum erro (valor "true") ou não (valor "false").</td><td>Boolean</td></tr>
+  <tr><td>registers_count</td><td>Quantidade de registros da página atual.</td><td>Integer</td></tr>
+  <tr><td>pages_count</td><td>Quantidade total de páginas de registros.</td><td>Integer</td></tr>
+  <tr><td>page</td><td>Número da página atual.</td><td>Integer</td></tr>
+  <tr><td>data</td><td>Informações sobre os pedidos.</td><td>Array</td></tr>
+  </table>
+  
+  O fim da página dos resultados pode ser assinalado de duas formas diferentes: o campo <i>data</i>, dentro de <i>result</i>, pode ter valor vazio ou mostrar os campos <i>pages_count</i> e <i>page</i> com o mesmo valor.
+}

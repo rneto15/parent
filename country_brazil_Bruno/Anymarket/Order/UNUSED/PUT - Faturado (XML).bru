@@ -1,0 +1,25 @@
+meta {
+  name: PUT - Faturado (XML)
+  type: http
+  seq: 7
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/orders/{{id_pedido}}/nfe
+  body: xml
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/xml
+  Accept: application/json
+  gumgaToken: {{gumgaToken}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:xml {
+  {{XML}}
+}

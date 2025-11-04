@@ -1,0 +1,21 @@
+meta {
+  name: GET Value ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://sandbox-api.anymarket.com.br/v2/variations/{{ID_VARIATION}}/values/{{ID_VALUE}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  gumgaToken: {{gumgaToken}}
+  gumgaOI: {{gumgaOI}}
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}

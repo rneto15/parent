@@ -1,0 +1,47 @@
+meta {
+  name: extract
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{endpoint}}/broadcast/v2/credit/statement
+  body: json
+  auth: oauth2
+}
+
+headers {
+  Ocp-Apim-Subscription-Key: {{x-api-key}}
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: {{endpoint_oauth}}
+  refresh_token_url: 
+  client_id: {{client_id}}
+  client_secret: {{client_secret}}
+  scope: {{scope}}
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}
+
+body:json {
+  {
+  "pagination": {
+  "pageSize": 10,
+  "pageNumber": 1
+  },
+  "filter": {
+  "providerId": "{{wallet_id}}",
+  "participantIdentifier": "{{cpf}}",
+  "initialDate": "2022-01-10T00:00:00-03:00",
+  "finalDate": "2023-12-31T23:59:59-03:00"
+  }
+  }
+}

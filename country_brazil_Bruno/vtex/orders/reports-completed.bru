@@ -1,0 +1,18 @@
+meta {
+  name: reports/completed
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/oms/pvt/admin/reports/completed
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

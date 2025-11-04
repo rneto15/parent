@@ -1,0 +1,94 @@
+meta {
+  name: Criar Loja
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://teste.conectala.com.br/app/Api/V1/Stores
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-provider-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "store": {
+          "store_name": "Loja de Brinquedos",
+          "corporate_name": "Razão Social da Loja",
+          "company_id": 10,
+          "service_charge": 12,
+          "catalogs": [
+              1
+          ],
+          "cnpj": "07771549000129",
+          "invoice_cnpj": "1",
+          "state_reg": "439125197",
+          "tel1": "48912345678",
+          "tel2": "4831234567",
+          "description": "Descrição da Loja de Brinquedos",
+          "exchange_return_policy": "Minha política de devolução",
+          "delivery_policy": "Minha política de entrega",
+          "security_privacy_policy": "Minha política de segurança e privacidade",
+          "erp_customer_supplier_code": "Mkx020201",
+          "associate_type": 1,
+          "collection_address": {
+              "address": "Rua dos Bancos",
+              "number": "200A",
+              "complement": "Apto 100",
+              "neighborhood": "Centro",
+              "city": "Florianópolis",
+              "state": "SC",
+              "country": "BR",
+              "zipcode": 20123900
+          },
+          "business_address": {
+              "address": "Rua dos Caixas",
+              "number": "100B",
+              "complement": "Casa 2",
+              "neighborhood": "Centro",
+              "city": "Florianópolis",
+              "state": "RJ",
+              "country": "BR",
+              "zipcode": 20321900
+          },
+          "responsible": {
+              "name": "Nome do Responsável",
+              "cpf": "89804670011",
+              "email": "responsavel@loja.com",
+              "bank": "Itaú",
+              "agency": 1234,
+              "account_type": "Conta Corrente",
+              "account": 12345
+          }
+      }
+  }
+}
+
+docs {
+  <h3>Endpoint destinado para requisições realizadas por fornecedores.</h3>
+  
+  Cadastra uma loja para um fornecedor.
+  
+  Campos que devem ser preenchidos para cadastro de loja:
+  
+  <table><tbody><tr><td><b>Atributo</b></td><td><b>Descrição</b></td><td><b>Tipo</b></td></tr><tr><td>store.store_name</td><td>Nome da loja.</td><td>String</td></tr><tr><td>store.corporate_name</td><td>Razão social da loja.</td><td>String</td></tr><tr><td>store.company_id</td><td>ID da empresa à qual a loja ficará associada.</td><td>Int</td></tr><tr><td>store.service_charge</td><td>Taxa de serviço cobrada desta loja sobre os produtos</td><td>float</td></tr><tr><td>store.catalogs</td><td>Catálogo a ser usado pela loja.</td><td>Array</td></tr><tr><td>store.service_charge_freight</td><td>Taxa de serviço incidente somente sobre o frete. Se este campo não for enviado, será usado o mesmo valor de service_charge.</td><td>float</td></tr><tr><td>store.cnpj</td><td>CNPJ.</td><td>String</td></tr><tr><td>store.state_reg</td><td>Inscrição Estadual.</td><td>String</td></tr><tr><td>store.tel1</td><td>Telefone de contato da loja.</td><td>String</td></tr><tr><td>store.tel2</td><td>Telefone de contato da loja.</td><td>String</td></tr><tr><td>store.associate_type</td><td>Tipo de associado, sendo:<br>- 0 para Matriz (valor padrão);<br>- 1 para Agência;<br>- 2 para Partner;<br>- 3 para Afiliado;<br>- 4 para Autônomo;<br>- 5 para Indicado;<br>- 6 para Franquia.</td><td>Inteiro (Opcional)</td></tr><tr><td>store.description</td><td>Descrição da loja que aparecerá no marketplace se o marketplace permitir criar a loja através da API. (Utilizado na VTEX.)</td><td>String</td></tr><tr><td>store.exchange_return_policy</td><td>Política de devolução que aparecerá no marketplace se o marketplace permitir criar a loja através da API. (Utilizado na VTEX.)</td><td>String</td></tr><tr><td>store.delivery_policy</td><td>Política de entrega que aparecerá no marketplace se o marketplace permitir criar a loja através da API. (Utilizado na VTEX.)</td><td>String</td></tr><tr><td>store.security_privacy_policy</td><td>Política de segurança e privacidade da loja que aparecerá no marketplace se o marketplace permitir criar a loja através da API. (Utilizado na VTEX.)</td><td>String</td></tr><tr><td>store.erp_customer_supplier_code</td><td>Código desta loja (cliente ou fornecedor) do seu sistema ERP ou similar.</td><td>String alfanumérica</td></tr><tr><td>store.service_charge_value</td><td>Comissão cobrada sobre os produtos vendidos em percntual</td><td>float</td></tr><tr><td>store.service_charge_freight_value</td><td>Comissão cobrada sobre o frete do pedido em percentual</td><td>float</td></tr><tr><td>store.logo</td><td>link para o lgotipo da loja se houver</td><td>String</td></tr><tr><td>store.collection_address.address</td><td>Endereço de coleta.</td><td>String</td></tr><tr><td>store.collection_address.number</td><td>Número do endereço de coleta.</td><td>String</td></tr><tr><td>store.collection_address.complement</td><td>Complemento.</td><td>String</td></tr><tr><td>store.collection_address.neighborhood</td><td>Bairro.</td><td>String</td></tr><tr><td>store.collection_address.city</td><td>Cidade.</td><td>String</td></tr><tr><td>store.collection_address.state</td><td>Sigla do estado.</td><td>String</td></tr><tr><td>store.collection_address.country</td><td>Sigla do país, sendo:<br>- "BR" – Brasil;<br>- "SP" – Espanha.</td><td>String</td></tr><tr><td>store.collection_address.zipcode</td><td>CEP.</td><td>String</td></tr><tr><td>store.business_address.address</td><td>Endereço comercial.</td><td>String</td></tr><tr><td>store.business_address.number</td><td>Número do endereço comercial.</td><td>String</td></tr><tr><td>store.business_address.complement</td><td>Complemento.</td><td>String</td></tr><tr><td>store.business_address.neighborhood</td><td>Bairro.</td><td>String</td></tr><tr><td>store.business_address.city</td><td>Cidade.</td><td>String<br></td></tr><tr><td>store.business_address.state</td><td>Sigla do estado.</td><td>String</td></tr><tr><td>store.business_address.country</td><td>Sigla do país, sendo:<br>- "BR" – Brasil;<br>- "SP" – Espanha.</td><td><br>String</td></tr><tr><td>store.business_address.zipcode</td><td>CEP.</td><td>String</td></tr><tr><td>store.responsible.name</td><td>Nome do responsável.</td><td>String</td></tr><tr><td>store.responsible.cpf</td><td>CPF do responsável.</td><td>String</td></tr><tr><td>store.responsible.email</td><td>E-mail.</td><td>String</td></tr><tr><td>store.responsible.bank</td><td>Nome do Banco, conforme listagem ao final da documentação.</td><td>String</td></tr><tr><td>store.responsible.agency</td><td>Agência.</td><td>String</td></tr><tr><td>store.responsible.account_type</td><td>Tipo da conta: "Conta Corrente" ou "Conta Poupança".</td><td><br>String</td></tr><tr><td>store.responsible.account</td><td>Número da conta bancária.</td><td>String</td></tr>
+  </tr><tr><td>store.invoice_cnpj</td><td>CNPJ para faturar.</td><td>Boolean</td></tr></tbody></table>
+  
+  Listagem de bancos disponíveis para cadastro:
+  
+  <table><tbody><tr><td>Nome do Banco</td><td>String</td></tr><tr><td>Itaú</td><td>"Itaú"</td></tr><tr><td>Bradesco</td><td>"Bradesco"</td></tr><tr><td>Caixa Econômica Federal</td><td>"Caixa Econômica"</td></tr><tr><td>Banco do Brasil</td><td>"Banco do Brasil"</td></tr><tr><td>Santander</td><td>"Santander"</td></tr><tr><td>Banrisul</td><td>"Banrisul"</td></tr><tr><td>Sicredi</td><td>"Sicredi"</td></tr><tr><td>Sicoob</td><td>"Sicoob"</td></tr><tr><td>Banco Inter</td><td>"Inter"</td></tr><tr><td>Banco BRB</td><td>"BRB"</td></tr><tr><td>Via Credi</td><td>"Via Credi"</td></tr><tr><td>Banco Neon</td><td>"Neon"</td></tr><tr><td>Nubank</td><td>"Nubank"</td></tr><tr><td>Pag Seguro</td><td>"Pagseguro"</td></tr><tr><td>Banco Original</td><td>"Banco Original"</td></tr><tr><td>Banco Safra</td><td>"Safra"</td></tr><tr><td>Banco Modal</td><td>"Modal"</td></tr><tr><td>Banestes</td><td>"Banestes"</td></tr><tr><td>Unicred</td><td>"Unicred"</td></tr><tr><td>Banco Stone</td><td>"Stone"</td></tr><tr><td>Neon/Votorantim</td><td>"Neon/Votorantim"</td></tr><tr><td>Modal</td><td>"Modal"</td></tr><tr><td>Money Plus</td><td>"Money Plus"</td></tr><tr><td>Mercantil do Brasil</td><td>"Mercantil do Brasil"</td></tr><tr><td>JP Morgan</td><td>"JP Morgan"</td></tr><tr><td>Gerencianet Pagamentos do Brasil</td><td>"Gerencianet Pagamentos do Brasil"</td></tr><tr><td>Banco C6</td><td>"Banco C6"</td></tr><tr><td>BS2</td><td>"BS2"</td></tr><tr><td>Banco Topázio</td><td>"Banco Topazio"</td></tr><tr><td>Uniprime</td><td>"Uniprime"</td></tr><tr><td>Banco Stone</td><td>"Banco Stone"</td></tr><tr><td>Rendimentto</td><td>"Rendimentto"</td></tr><tr><td>Banco Daycoval</td><td>"Banco Daycoval"</td></tr><tr><td>Banco do Nordeste</td><td>"Banco do Nordeste"</td></tr><tr><td>Citibank</td><td>"Citibank"</td></tr></tbody></table>
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem "true" como valor.
+  
+  A segunda chave, intitulada "result", fornece informações sobre a loja cadastrada, com as seguintes chaves:
+  
+  <table><tbody><tr><td>Atributo</td><td>Descrição</td><td>Tipo</td></tr><tr><td>id</td><td>Id da loja.</td><td>Integer</td></tr><tr><td>message</td><td>Resultado da ação.</td><td>String</td></tr></tbody></table>
+}

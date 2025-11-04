@@ -1,0 +1,22 @@
+meta {
+  name: processarDocumentosData
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{endpoint}}/processarDocumentosData
+  body: none
+  auth: none
+}
+
+headers {
+  tokenPoslog: {{tokenPoslog}}
+  dtStart: {{dtStart}}
+  dtEnd: {{dtEnd}}
+  page: 100
+  Accept: application/json
+  Content-Type: application/json
+  ~transaction_id: {{transaction_id}
+  ~type: 50-39-39-20230512204824-1-10037
+}

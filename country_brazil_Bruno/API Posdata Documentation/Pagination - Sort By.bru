@@ -1,0 +1,20 @@
+meta {
+  name: Pagination : Sort By
+  type: http
+  seq: 17
+}
+
+get {
+  url: https://api-eu.preprod.subsidia.org/posdata_api/poslogs?sortBy=sequenceNumber
+  body: none
+  auth: none
+}
+
+params:query {
+  sortBy: sequenceNumber
+}
+
+headers {
+  Authorization: Bearer your-fed-token
+  x-api-key: your-x-api-key
+}

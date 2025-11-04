@@ -1,0 +1,17 @@
+meta {
+  name: Collections
+  seq: 2
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: X-API-Key
+  value: {{token}}
+  placement: header
+}
+docs {
+  The `/collections` endpoints let you manage your [collections](https://learning.postman.com/docs/sending-requests/intro-to-collections/).
+}

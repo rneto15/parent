@@ -1,0 +1,35 @@
+meta {
+  name: get projects
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseurl}}/rest/api/3/project/{{project}}
+  body: none
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{pass}}
+}
+
+script:post-response {
+  let responses = bru.getVar('collectionResponses');
+  if(responses) {
+    responses = JSON.parse(responses);
+  } else {
+    responses = [];
+  }
+  
+  responses.push(res.getBody());
+  bru.setVar('collectionResponses', JSON.stringify(responses));
+  
+  
+  console.log(JSON.stringify(responses));
+}

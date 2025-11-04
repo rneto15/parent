@@ -1,0 +1,21 @@
+meta {
+  name: GetProductAndSkuIds
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/catalog_system/pvt/products/GetProductAndSkuIds?_from=27750&_to=28000
+  body: none
+  auth: none
+}
+
+params:query {
+  _from: 27750
+  _to: 28000
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

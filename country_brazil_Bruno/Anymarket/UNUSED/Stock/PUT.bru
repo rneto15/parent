@@ -1,0 +1,37 @@
+meta {
+  name: PUT
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://sandbox-api.anymarket.com.br/v2/stocks
+  body: json
+  auth: bearer
+}
+
+headers {
+  gumgaToken: {{gumgaToken}}
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  [
+    {
+      "id": 0,
+      "partnerId": "string",
+      "quantity": 65,
+      "cost": 511
+    }
+  ]
+}
+
+script:post-response {
+  test("Status code is 204", function() {
+    expect(Boolean(responseCode.code === 204)).to.be.true;
+  });
+}

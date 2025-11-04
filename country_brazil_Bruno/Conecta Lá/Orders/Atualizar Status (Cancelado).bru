@@ -1,0 +1,50 @@
+meta {
+  name: Atualizar Status (Cancelado)
+  type: http
+  seq: 10
+}
+
+put {
+  url: http://teste.conectala.com.br/app/Api/V1/Orders/{{Order}}/canceled
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  accept: application/json;charset=UTF-8
+  x-user-email: {{x-user-email}}
+  x-api-key: {{x-api-key}}
+  x-store-key: {{x-store-key}}
+}
+
+body:json {
+  {
+      "order": {
+          "date": "2020-02-19 11:52:09",
+          "reason": "Pedido cancelado por falta de estoque"
+      }
+  }
+}
+
+docs {
+  Atualiza o status do pedido para "<b>Cancelado</b>".
+  
+  O pedido <b>deve não</b> ter qualquer um dos seguintes status:
+  <table>
+  <tr><td>Status</td><td>Descrição</td></tr>
+  <tr><td>5</td><td>Em transporte - O pedido já foi enviado ao cliente.</td></tr>
+  <tr><td>6</td><td>Entregue - O pedido já foi entregue ao cliente.</td></tr>
+  <tr><td>45</td><td>Em transporte - O pedido já foi enviado ao cliente.</td></tr>
+  <tr><td>51</td><td>PLP gerada - Enviar rastreio para o marketplace.</td></tr>
+  <tr><td>52</td><td>Pedido faturado - Enviar NF-e para o marketplace.</td></tr>
+  <tr><td>55</td><td>Em transporte - Avisar o marketplace que o pedido foi enviado.</td></tr>
+  <tr><td>60</td><td>Entregue - Avisar ao marketplace que foi entregue.</td></tr>
+  <tr><td>96</td><td>Pedido cancelado - Cancelado antes de realizar o pagamento.</td></tr>
+  <tr><td>97</td><td>Pedido cancelado - Cancelado após o pagamento.</td></tr>
+  <tr><td>98</td><td>Cancelar pedido na transportadora.</td></tr>
+  <tr><td>99</td><td>Cancelar pedido no Marketplace.</td></tr>
+  </table>
+  
+  Em caso de sucesso, um resultado com duas chaves é retornado. A primeira chave, intitulada "success", tem o valor "true". A segunda chave, intitulada "message", tem "Order successfully updated" como valor.
+}

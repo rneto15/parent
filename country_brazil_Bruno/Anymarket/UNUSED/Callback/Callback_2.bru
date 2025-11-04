@@ -1,0 +1,34 @@
+meta {
+  name: Callback_2
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{endpoint}}/v2/callbacks
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+  gumgaToken: L31295443G1573155501449R-829915716
+}
+
+auth:bearer {
+  token: gumgaToken={{token}}
+}
+
+body:json {
+  
+    {
+    	"url": "http://jaarconsultdesenv.eastus.cloudapp.azure.com:58764/OrderCallback/Notify",
+    "type" : "ORDER",
+    "content" : {
+      "id":"26674",
+      "oi":"31295443."
+    }
+  }
+  
+}

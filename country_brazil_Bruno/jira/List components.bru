@@ -1,0 +1,31 @@
+meta {
+  name: List components
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseurl}}/rest/api/3/project/{{project}}/components
+  body: none
+  auth: basic
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{pass}}
+}
+
+script:post-response {
+  let responses = bru.getVar('collectionResponses');
+  if(responses) {
+    responses = JSON.parse(responses);
+  } else {
+    responses = [];
+  }
+  
+  responses.push(res.getBody());
+  bru.setVar('collectionResponses', JSON.stringify(responses));
+  
+  
+  console.log(JSON.stringify(responses));
+}

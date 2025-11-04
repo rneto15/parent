@@ -1,0 +1,16 @@
+meta {
+  name: Sku details
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/catalog_system/pvt/sku/stockkeepingunitbyid/9186
+  body: none
+  auth: none
+}
+
+headers {
+  X-VTEX-API-AppKey: {{appKey}}
+  X-VTEX-API-AppToken: {{appToken}}
+}

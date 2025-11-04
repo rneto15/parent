@@ -1,0 +1,16 @@
+meta {
+  name: troque facil
+  seq: 1
+}
+
+auth {
+  mode: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  endpoint: https://api.send4.com.br
+}

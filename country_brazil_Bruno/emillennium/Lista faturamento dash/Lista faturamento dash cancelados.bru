@@ -1,0 +1,23 @@
+meta {
+  name: Lista faturamento dash cancelados
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{endpoint}}/api/MILLENIUM_ECO_CDECATHLON.PEDIDO_VENDA.LISTAFATURAMENTOS_DASH?$dateformat=iso&$format=json&trans_id={{trans_id}}&$top=1
+  body: none
+  auth: basic
+}
+
+params:query {
+  $dateformat: iso
+  $format: json
+  trans_id: {{trans_id}}
+  $top: 1
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}

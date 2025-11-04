@@ -1,0 +1,32 @@
+meta {
+  name: member profile
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{endpoint}}/identity/v1/members/profile/id/{{member_id}}
+  body: none
+  auth: oauth2
+}
+
+headers {
+  accept: application/json
+  X-Location: BR
+  x-api-key: {{x-api-key}}
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: {{endpoint_fedid}}
+  refresh_token_url: 
+  client_id: {{client_id_fedid}}
+  client_secret: {{client_secret_fedid}}
+  scope: 
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}

@@ -1,0 +1,17 @@
+meta {
+  name: jira
+  seq: 1
+}
+
+auth {
+  mode: basic
+}
+
+auth:basic {
+  username: {{user}}
+  password: {{pass}}
+}
+
+vars:pre-request {
+  collectionResponses: 
+}
